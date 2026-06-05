@@ -745,6 +745,83 @@ body {
         grid-template-columns: 1fr;
     }
 }
+
+/* Sección Socio o Voluntario */
+.voluntariado-section {
+    padding: 60px 20px;
+    background-color: #eafcf9;
+}
+
+.voluntariado-section h2 {
+    font-size: 2.5rem;
+    color: var(--dark-color);
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.voluntariado-container {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 2.5rem;
+    margin-top: 2rem;
+    max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.voluntariado-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.voluntariado-info h3 {
+    font-size: 1.8rem;
+    color: var(--dark-color);
+    margin-bottom: 0.5rem;
+}
+
+.info-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    border-left: 5px solid var(--secondary-color);
+}
+
+.info-card h4 {
+    font-size: 1.2rem;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.info-card p {
+    font-size: 0.95rem;
+    color: #555;
+    line-height: 1.6;
+}
+
+.info-card ul {
+    list-style-position: inside;
+    font-size: 0.95rem;
+    color: #555;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+@media (max-width: 768px) {
+    .voluntariado-container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    .voluntariado-section h2 {
+        font-size: 1.8rem;
+    }
+}
     </style>
 </head>
 <body>
@@ -758,6 +835,7 @@ body {
                 <li><a href="#solicitar" class="nav-link">Solicitar Adopción</a></li>
                 <li><a href="#donaciones" class="nav-link">Donaciones</a></li>
                 <li><a href="#reportar" class="nav-link">Reportar Perro</a></li>
+                <li><a href="#voluntariado" class="nav-link">Socio/Voluntario</a></li>
                 <li><a href="#cuidados" class="nav-link">Cuidados</a></li>
                 <li><a href="#nosotros" class="nav-link">Sobre Nosotros</a></li>
             </ul>
@@ -1068,6 +1146,77 @@ body {
                     
                     <button type="submit" class="btn btn-submit">Enviar Reporte</button>
                 </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Socio o Voluntario -->
+    <section id="voluntariado" class="voluntariado-section">
+        <div class="container">
+            <h2>Hazte Socio o Voluntario</h2>
+            <p class="section-description">Únete a nuestra causa y ayuda a transformar la vida de cientos de perritos</p>
+            
+            <div class="voluntariado-container">
+                <div class="voluntariado-info">
+                    <h3>¿Cómo puedes ayudar?</h3>
+                    <div class="info-card">
+                        <h4>🤝 Ser Socio</h4>
+                        <p>Apoya económicamente con aportaciones mensuales para garantizar la alimentación, medicamentos y mantenimiento del refugio.</p>
+                    </div>
+                    <div class="info-card">
+                        <h4>❤️ Ser Voluntario</h4>
+                        <p>Dona tu tiempo y amor ayudando en las tareas del refugio, paseos de perros, eventos de adopción o difusión en redes.</p>
+                    </div>
+                    <div class="info-card">
+                        <h4>📋 Requisitos generales</h4>
+                        <ul>
+                            <li>Ser mayor de edad (o contar con autorización de padres).</li>
+                            <li>Tener compromiso y amor incondicional por los animales.</li>
+                            <li>Completar el formulario con tus datos personales.</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="form-container">
+                    <form id="volunteerForm" class="form-grid">
+                        <div class="form-group">
+                            <label for="volunteerName">Nombre Completo *</label>
+                            <input type="text" id="volunteerName" name="name" required placeholder="Tu nombre y apellido">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="volunteerEmail">Correo Electrónico *</label>
+                            <input type="email" id="volunteerEmail" name="email" required placeholder="tu@email.com">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="volunteerPhone">Teléfono *</label>
+                            <input type="tel" id="volunteerPhone" name="phone" required placeholder="Ej: +1-234-567-8900">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="volunteerAge">Edad *</label>
+                            <input type="number" id="volunteerAge" name="age" required min="14" max="100" placeholder="Tu edad">
+                        </div>
+                        
+                        <div class="form-group full-width">
+                            <label for="volunteerRole">¿Cómo deseas participar? *</label>
+                            <select id="volunteerRole" name="role" required>
+                                <option value="">-- Selecciona una opción --</option>
+                                <option value="socio">Quiero ser Socio de la fundación</option>
+                                <option value="voluntario">Quiero ser Voluntario del refugio</option>
+                                <option value="ambos">Ambos (Socio y Voluntario)</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group full-width">
+                            <label for="volunteerMotivation">¿Por qué deseas ser voluntario o socio? *</label>
+                            <textarea id="volunteerMotivation" name="motivation" required placeholder="Cuéntanos un poco sobre ti, tu motivación y disponibilidad de tiempo..." rows="4"></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-submit">Enviar Registro</button>
+                    </form>
+                </div>
             </div>
         </div>
     </section>

@@ -95,6 +95,12 @@ function initializeFormHandlers() {
     if (reportForm) {
         reportForm.addEventListener('submit', handleReportSubmit);
     }
+    
+    // Formulario de Voluntariado
+    const volunteerForm = document.getElementById('volunteerForm');
+    if (volunteerForm) {
+        volunteerForm.addEventListener('submit', handleVolunteerSubmit);
+    }
 }
 
 // Manejo de Formulario de Adopción
@@ -235,6 +241,41 @@ function handleReportSubmit(e) {
     document.getElementById('reportForm').reset();
     const preview = document.getElementById('photoPreview');
     if (preview) preview.innerHTML = '';
+}
+
+// Manejo de Formulario de Voluntariado/Socio
+function handleVolunteerSubmit(e) {
+    e.preventDefault();
+    
+    const name = document.getElementById('volunteerName').value;
+    const email = document.getElementById('volunteerEmail').value;
+    const phone = document.getElementById('volunteerPhone').value;
+    const age = document.getElementById('volunteerAge').value;
+    const role = document.getElementById('volunteerRole').value;
+    const motivation = document.getElementById('volunteerMotivation').value;
+    
+    // Validaciones
+    if (!name || !email || !phone || !age || !role || !motivation) {
+        alert('Por favor completa todos los campos requeridos');
+        return;
+    }
+    
+    // Crear objeto con datos
+    const volunteerData = {
+        name, email, phone, age, role, motivation,
+        timestamp: new Date().toLocaleString('es-ES')
+    };
+    
+    // Guardar en localStorage
+    let submissions = JSON.parse(localStorage.getItem('volunteerSubmissions') || '[]');
+    submissions.push(volunteerData);
+    localStorage.setItem('volunteerSubmissions', JSON.stringify(submissions));
+    
+    const roleText = role === 'socio' ? 'Socio' : role === 'voluntario' ? 'Voluntario' : 'Socio y Voluntario';
+    alert(`¡Gracias ${name}! Tu solicitud para unirte como ${roleText} ha sido recibida con éxito.\nNos pondremos en contacto contigo pronto.`);
+    
+    // Limpiar formulario
+    document.getElementById('volunteerForm').reset();
 }
 
 // Cargar perros y configurar formularios cuando se carga la página
