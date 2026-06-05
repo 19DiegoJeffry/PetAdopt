@@ -1,0 +1,66 @@
+🤖 CHATBOT IA - GUÍA DE USO
+=====================================
+
+✨ CARACTERÍSTICAS NUEVAS:
+- El chatbot ahora usa Inteligencia Artificial en lugar de solo respuestas predefinidas
+- Responde de forma natural y contextual a cualquier pregunta sobre perros y adopción
+- Mantiene respuestas específicas de PetAdopt como fallback
+
+📋 CÓMO USAR:
+=====================================
+
+1. INICIAR EL SERVIDOR:
+   - Abre una terminal/cmd en la carpeta del proyecto
+   - Ejecuta: node server.js
+   - O: npm start
+   
+   Verás: "🐾 Servidor PetAdopt ejecutándose en http://localhost:5000"
+
+2. ABRIR LA APLICACIÓN WEB:
+   - Abre index.html en tu navegador
+   - Haz clic en el icono del chatbot (esquina inferior derecha)
+   - Escribe tu pregunta
+
+3. EJEMPLOS DE PREGUNTAS:
+   ✓ "¿Cómo puedo adoptar un perro?"
+   ✓ "¿Qué debo alimentar a mi perro?"
+   ✓ "¿Cuánto ejercicio necesita un Golden Retriever?"
+   ✓ "Mi perro tiene fiebre, ¿qué debo hacer?"
+   ✓ "¿Cuáles son los requisitos para adoptar?"
+   ✓ "¿Qué razas tienen disponibles?"
+
+🔧 CONFIGURACIÓN (Opcional):
+=====================================
+
+Para usar tu propia API key de Hugging Face:
+1. Ve a https://huggingface.co/settings/tokens
+2. Crea un nuevo token (léelo)
+3. Abre .env y reemplaza HF_API_KEY con tu token
+4. Reinicia el servidor
+
+⚠️ INFORMACIÓN IMPORTANTE:
+=====================================
+
+- La IA usa respuestas predefinidas si no puede conectarse a la API externa
+- La primera respuesta puede tardar 2-3 segundos en generarse
+- Todas las respuestas están contextualizadas para PetAdopt
+- El chatbot responde en español
+
+🔗 TECNOLOGÍA:
+=====================================
+
+- Backend: Node.js + Express
+- IA: Hugging Face API (Mistral-7B)
+- Frontend: JavaScript + HTML/CSS
+- Comunicación: REST API (POST /api/chat)
+
+📞 PROBLEMAS:
+=====================================
+
+Si el chatbot no responde:
+1. Verifica que el servidor esté ejecutándose (puerto 5000)
+2. Abre la consola del navegador (F12) y busca errores
+3. Intenta actualizar la página (Ctrl+F5)
+4. Reinicia el servidor
+
+¡El chatbot ahora es mucho más inteligente y natural! 🎉

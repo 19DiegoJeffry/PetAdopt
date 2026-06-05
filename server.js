@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 require('dotenv').config();
+const axios = require('axios');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -9,7 +10,24 @@ const PORT = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 
-// Base de datos de respuestas del chatbot
+// Contexto del sistema para el IA
+const SYSTEM_CONTEXT = `Eres un asistente de inteligencia artificial amable y experto para PetAdopt, 
+una plataforma dedicada a facilitar la adopción de perros rescatados y proporcionar información 
+sobre cuidados responsables de mascotas. 
+
+Debes responder en español con un tono amigable y profesional. Proporciona información precisa 
+y útil sobre:
+- Adopción de perros
+- Cuidados y salud de mascotas
+- Alimentación canina
+- Entrenamiento y comportamiento
+- Información sobre PetAdopt
+- Cualquier otra pregunta relacionada con perros
+
+Si el usuario pregunta algo fuera de tu área de expertise o no relacionado con perros/PetAdopt, 
+responde educadamente sugiriendo que consulte fuentes especializadas.`;
+
+// Base de datos de respuestas predefinidas como fallback
 const chatbotResponses = {
     adopcion: "Para adoptar un perro, debes rellenar nuestro formulario de solicitud, proporcionar referencias, y realizar una entrevista. El proceso toma aproximadamente 2-3 semanas para asegurar que el perro encuentra el hogar perfecto.",
     
@@ -38,8 +56,48 @@ const chatbotResponses = {
     requisitos: "Requisitos básicos: mayor de 18 años, tener un hogar estable, poder proporcionar cuidado veterinario, referencias de carácter y disponibilidad de tiempo para el perro."
 };
 
-// Función para procesar mensajes y buscar respuestas
-function processMessage(userMessage) {
+// Función para usar IA (Hugging Face API - gratuita)
+async function getAIResponse(userMessage) {
+    try {
+        const API_KEY = process.env.HF_API_KEY;
+        
+        if (!API_KEY) {
+            console.warn('⚠️ HF_API_KEY no configurada. Usando fallback de respuestas predefinidas.');
+            return null;
+        }
+        
+        const response = await axios.post(
+            "https://api-inference.huggingface.co/models/Qwen/Qwen2.5-7B-Instruct",
+            {
+                inputs: `${SYSTEM_CONTEXT}\n\nUsuario: ${userMessage}\n\nAsistente:`,
+                parameters: {
+                    max_length: 512,
+                    temperature: 0.7,
+                    top_p: 0.9,
+                }
+            },
+            {
+                headers: {
+                    Authorization: `Bearer ${API_KEY}`
+                }
+            }
+        );
+        
+        if (response.data && response.data[0] && response.data[0].generated_text) {
+            const fullText = response.data[0].generated_text;
+            const parts = fullText.split("Asistente:");
+            const reply = parts.length > 1 ? parts[1] : fullText;
+            return reply.trim();
+        }
+    } catch (error) {
+        console.error("Error con IA externa:", error.message);
+    }
+    
+    return null;
+}
+
+// Función para procesar mensajes con fallback a respuestas predefinidas
+function processMessageFallback(userMessage) {
     const lowerMessage = userMessage.toLowerCase();
     
     const keywords = {
@@ -69,19 +127,36 @@ function processMessage(userMessage) {
 
 // Rutas
 app.get('/', (req, res) => {
-    res.json({ message: 'Bienvenido a la API de PetAdopt Chatbot' });
+    res.json({ message: 'Bienvenido a la API de PetAdopt Chatbot con IA' });
 });
 
-// Endpoint del chatbot
-app.post('/api/chat', (req, res) => {
+// Endpoint del chatbot con IA
+app.post('/api/chat', async (req, res) => {
     const { message } = req.body;
     
     if (!message) {
         return res.status(400).json({ error: 'Mensaje vacío' });
     }
     
-    const reply = processMessage(message);
-    res.json({ reply });
+    try {
+        // Intentar obtener respuesta de IA
+        console.log(`📨 Mensaje recibido: "${message}"`);
+        let reply = await getAIResponse(message);
+        
+        // Si no hay respuesta de IA, usar fallback
+        if (!reply) {
+            console.log('⚠️ IA no disponible, usando fallback de respuestas predefinidas');
+            reply = processMessageFallback(message);
+        } else {
+            console.log('✅ Respuesta generada por IA');
+        }
+        
+        res.json({ reply });
+    } catch (error) {
+        console.error('Error en /api/chat:', error.message);
+        const fallbackReply = processMessageFallback(message);
+        res.json({ reply: fallbackReply });
+    }
 });
 
 // Manejo de errores
@@ -94,4 +169,5 @@ app.use((err, req, res, next) => {
 app.listen(PORT, () => {
     console.log(`🐾 Servidor PetAdopt ejecutándose en http://localhost:${PORT}`);
     console.log(`📨 Endpoint de chatbot: POST http://localhost:${PORT}/api/chat`);
+    console.log(`🤖 Chatbot IA habilitado con respuestas predefinidas como fallback`);
 });

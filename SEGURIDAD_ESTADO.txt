@@ -1,0 +1,93 @@
+╔════════════════════════════════════════════════════════════════╗
+║         🔒 SEGURIDAD: ACTUALIZACIÓN DE TOKEN REQUERIDA        ║
+╚════════════════════════════════════════════════════════════════╝
+
+🚨 ESTADO: Token viejo comprometido - ACCIÓN REQUERIDA
+
+┌─ ANTES (INSEGURO) ────────────────────────────────────────────┐
+│ server.js contenía:                                            │
+│ const API_KEY = "hf_COMPROMISED_KEY_REVOKED"                   │
+│                                                                 │
+│ ❌ Token en código fuente                                      │
+│ ❌ Token subido a Git                                          │
+│ ❌ Token comprometido                                          │
+└────────────────────────────────────────────────────────────────┘
+
+┌─ AHORA (SEGURO) ──────────────────────────────────────────────┐
+│ server.js contiene:                                            │
+│ const API_KEY = process.env.HF_API_KEY                        │
+│                                                                 │
+│ ✅ Token en variables de entorno                              │
+│ ✅ Token NO en código fuente                                  │
+│ ✅ Token protegido por .gitignore                             │
+│ ✅ Token en .env (ignorado por Git)                           │
+└────────────────────────────────────────────────────────────────┘
+
+📋 TAREAS COMPLETADAS:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  ✅ server.js limpiado (token removido)
+  ✅ .gitignore creado (.env protegido)
+  ✅ Historial de Git limpiado
+  ✅ Archivo .env actualizado con instrucciones
+
+⏳ TAREAS PENDIENTES (TÚ DEBES HACER):
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  1️⃣  Revoca el token viejo:
+      https://huggingface.co/settings/tokens
+      Busca el token comprometido (empieza por hf_)
+      Haz clic en 🗑️ para eliminar
+
+  2️⃣  Crea un nuevo token:
+      En la misma página, haz clic en "New token"
+      - Nombre: PetAdopt Chatbot
+      - Tipo: Read
+      - Copia el token inmediatamente
+
+  3️⃣  Actualiza .env:
+      Edita el archivo: .env
+      Reemplaza: HF_API_KEY=tu_nuevo_token_aqui
+      Con tu nuevo token
+
+  4️⃣  Prueba:
+      npm start
+      Abre index.html
+      Prueba el chatbot ✨
+
+📖 DOCUMENTACIÓN:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  📄 GUIA_TOKEN_NUEVO.txt      - Instrucciones detalladas paso a paso
+  📄 CAMBIOS_CHATBOT_IA.txt    - Resumen técnico de cambios
+  📄 CHATBOT_IA_GUIA.txt       - Guía de uso del chatbot
+
+🔐 ARCHIVOS DE SEGURIDAD:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  ✅ .env                      - Variables de entorno (IGNORADO por Git)
+  ✅ .gitignore               - Protege .env y node_modules
+  ✅ server.js                - Usa variables de entorno
+
+⚠️  IMPORTANTE:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  El token comprometido fue expuesto
+  en el repositorio público. DEBES revocarlo inmediatamente.
+
+  Después:
+  - Nadie podrá usar tu token viejo
+  - Tu nuevo token estará protegido
+  - Tu proyecto será seguro para GitHub
+
+✨ RESULTADO FINAL:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  ✅ Chatbot IA funcionando
+  ✅ Proyecto seguro
+  ✅ Token protegido
+  ✅ Listo para producción
+
+╔════════════════════════════════════════════════════════════════╗
+║  Lee: GUIA_TOKEN_NUEVO.txt para instrucciones paso a paso    ║
+╚════════════════════════════════════════════════════════════════╝

@@ -1,0 +1,278 @@
+╔════════════════════════════════════════════════════════════════════╗
+║    ✅ GUÍA: CÓMO EJECUTAR EL CHATBOT (FORMA PASO A PASO)         ║
+╚════════════════════════════════════════════════════════════════════╝
+
+🎯 OBJETIVO: Ejecutar setup-and-run.bat en 3 clics
+
+
+📁 PASO 1: ENCONTRAR LA CARPETA
+═══════════════════════════════════════════════════════════════════
+
+Ruta exacta:
+  C:\Users\Diego Chiguno\Downloads\pagina web (2)\pagina web
+
+Cómo llegar:
+  1. Presiona Windows Key + E (abre Explorador)
+  2. En la barra de direcciones arriba, pega:
+     C:\Users\Diego Chiguno\Downloads\pagina web (2)
+  3. ENTER
+  4. Abre la carpeta: "pagina web"
+
+
+📄 PASO 2: BUSCAR EL ARCHIVO
+═══════════════════════════════════════════════════════════════════
+
+Busca: setup-and-run.bat
+
+Cómo identificarlo:
+  • Ícono: ⚙️ (engranaje)
+  • Nombre completo: setup-and-run.bat
+  • Está en la raíz de la carpeta
+
+Archivos que ves en la carpeta:
+  
+  ✅ .env (archivo con punto)
+  ✅ .gitignore (archivo con punto)
+  ✅ chatbot.js
+  ✅ index.html ← Tu página web
+  ✅ iniciar_servidor.bat
+  ✅ main.js
+  ✅ package.json
+  ✅ server.js
+  ✅ setup-and-run.bat ← ESTE (ícono ⚙️)
+  ✅ setup-token-simple.js
+  ✅ setup-token.js
+  
+  Y más archivos de documentación...
+
+
+🚀 PASO 3: EJECUTAR EL ARCHIVO
+═══════════════════════════════════════════════════════════════════
+
+OPCIÓN A: Doble clic (LO MÁS FÁCIL):
+  1. Haz DOBLE CLIC en: setup-and-run.bat
+  2. Se abrirá una ventana de terminal (CMD)
+  3. Espera a que aparezca el mensaje:
+     "Pega tu nuevo token aquí: "
+
+OPCIÓN B: Clic derecho → Ejecutar como administrador:
+  1. Clic derecho en: setup-and-run.bat
+  2. Selecciona: "Ejecutar como administrador"
+  3. Haz clic: "Sí" si pide permisos
+  4. Espera igual
+
+
+📝 PASO 4: PEGAR TU TOKEN
+═══════════════════════════════════════════════════════════════════
+
+Cuando veas en la terminal:
+  
+  ┌──────────────────────────────────────────────┐
+  │ Pega tu nuevo token aquí: _                 │
+  └──────────────────────────────────────────────┘
+
+DEBES:
+  1. IR A: https://huggingface.co/settings/tokens
+  2. Crear nuevo token (botón azul "New token")
+  3. Llenar formulario:
+     - Name: PetAdopt Chatbot
+     - Type: Read (lectura)
+     - Expiration: Never
+  4. Click en "Create token"
+  5. COPIAR el token (Ctrl+C)
+     Verá algo como: hf_aBcDeFgHiJkLmNoPqRsTuVwXyZ1234567890
+  6. Regresar a la terminal que abriste
+  7. PEGAR el token (Ctrl+V o clic derecho + Paste)
+  8. Presionar ENTER
+
+
+✅ PASO 5: ESPERAR A QUE INSTALE
+═══════════════════════════════════════════════════════════════════
+
+La terminal mostrará:
+
+  ✅ Node.js detectado
+  ✅ Dependencias instaladas
+  ✅ Token guardado en .env
+  ✅ Archivo .env actualizado correctamente!
+  
+  🚀 Iniciando servidor...
+  
+  🐾 Servidor PetAdopt ejecutándose en http://localhost:5000
+  📨 Endpoint de chatbot: POST http://localhost:5000/api/chat
+  🤖 Chatbot IA habilitado con respuestas predefinidas como fallback
+
+CUANDO VEA ESO, el servidor está corriendo ✅
+
+
+🌐 PASO 6: ABRIR EL CHATBOT EN NAVEGADOR
+═══════════════════════════════════════════════════════════════════
+
+Opción A (Recomendado):
+  1. Ve a la carpeta donde encontraste setup-and-run.bat
+  2. Encuentra: index.html
+  3. Haz DOBLE CLIC en él
+  4. Se abrirá tu navegador automáticamente
+
+Opción B:
+  1. Abre tu navegador (Chrome, Firefox, Edge, etc.)
+  2. En la barra de direcciones, pega:
+     file:///C:/Users/Diego%20Chiguno/Downloads/pagina%20web%20(2)/pagina%20web/index.html
+  3. Presiona ENTER
+
+Opción C:
+  1. Abre el Explorador de Archivos
+  2. Navega a la carpeta
+  3. Busca: index.html
+  4. Doble clic
+
+
+💬 PASO 7: USAR EL CHATBOT
+═══════════════════════════════════════════════════════════════════
+
+1. Verás una página web con info sobre PetAdopt
+2. Abajo a la derecha hay un ícono de CHAT 💬
+3. Haz clic en el ícono
+4. Se abrirá una ventana de chat
+5. Escribe una pregunta, ejemplo:
+
+   "¿Cómo puedo adoptar un perro?"
+   "¿Cuánto cuesta la adopción?"
+   "¿Qué razas tienen disponibles?"
+
+6. Presiona ENTER o haz clic en "Enviar"
+7. ¡Verás respuestas de IA! 🤖
+
+
+⏸️  PARA DETENER EL SERVIDOR
+═══════════════════════════════════════════════════════════════════
+
+Cuando quieras parar el chatbot:
+
+  1. Regresa a la ventana de terminal que abriste
+  2. Presiona: Ctrl + C
+  3. Verá: "¿Desea terminar el trabajo? (S/N/A): "
+  4. Escribe: S
+  5. Presiona ENTER
+  6. El servidor se detendrá
+
+
+═══════════════════════════════════════════════════════════════════
+❌ SOLUCIÓN DE PROBLEMAS
+═══════════════════════════════════════════════════════════════════
+
+❌ Problema: "No encuentro setup-and-run.bat"
+
+✅ Soluciones:
+   • Verifica estar en la carpeta correcta:
+     C:\Users\Diego Chiguno\Downloads\pagina web (2)\pagina web
+   • Los archivos están ocultos? (Ver → Opciones → Mostrar archivos ocultos)
+   • Busca: En la barra superior, escribe "setup-and-run"
+   • Copia y pega en Explorador la ruta: C:\Users\Diego Chiguno\Downloads\pagina web (2)\pagina web
+
+
+❌ Problema: "Se abre una ventana negra y se cierra rápido"
+
+✅ Soluciones:
+   • El servidor probablemente ya está corriendo
+   • Abre terminal (cmd) y escribe:
+     netstat -ano | findstr :5000
+   • Abre navegador en: http://localhost:5000
+   • Si sigue sin funcionar, mata el proceso:
+     taskkill /PID <número> /F
+
+
+❌ Problema: "No tengo Node.js"
+
+✅ Soluciones:
+   • Descarga: https://nodejs.org/ (versión LTS)
+   • Instálalo completamente
+   • Reinicia tu computadora
+   • Abre terminal y verifica: node --version
+   • Intenta ejecutar setup-and-run.bat de nuevo
+
+
+❌ Problema: "Error: npm no reconocido"
+
+✅ Soluciones:
+   • npm viene con Node.js
+   • Descarga Node.js desde: https://nodejs.org/
+   • Instálalo
+   • Reinicia terminal (cmd)
+   • Intenta de nuevo
+
+
+❌ Problema: "El token no funciona"
+
+✅ Soluciones:
+   • Ve a: https://huggingface.co/settings/tokens
+   • Revoca el token anterior
+   • Crea uno nuevo TOTAL
+   • Cópialo completo (sin espacios)
+   • Abre terminal y ejecuta:
+     node setup-token-simple.js
+   • Pega el nuevo token
+
+
+❌ Problema: "Pegué mal el token"
+
+✅ Soluciones:
+   • Abre el archivo .env
+   • Busca la línea: HF_API_KEY=
+   • Reemplaza con el token correcto
+   • Guarda el archivo
+   • Detén el servidor (Ctrl+C)
+   • Ejecuta npm start de nuevo
+
+
+❌ Problema: "El chatbot no responde"
+
+✅ Soluciones:
+   1. Abre navegador en: http://localhost:5000
+      (deberías ver "Bienvenido a la API")
+   2. Presiona F12 (abre consola)
+   3. Busca errores en rojo
+   4. En la terminal del servidor, verás logs
+   5. Si falta el token:
+      abre .env y verifica: HF_API_KEY=tu_token_aqui
+
+
+❌ Problema: "Puerto 5000 en uso"
+
+✅ Soluciones:
+   • Otro programa ya usa ese puerto
+   • Terminal: netstat -ano | findstr :5000
+   • Mata ese proceso: taskkill /PID <número> /F
+   • O cambia el puerto en .env: PORT=3000
+   • Luego: npm start
+
+
+═══════════════════════════════════════════════════════════════════
+✅ RESUMEN RÁPIDO (3 PASOS)
+═══════════════════════════════════════════════════════════════════
+
+1️⃣  Abre: C:\Users\Diego Chiguno\Downloads\pagina web (2)\pagina web
+
+2️⃣  Haz DOBLE CLIC en: setup-and-run.bat
+    (ícono ⚙️ engranaje)
+
+3️⃣  Cuando pida token, cópialo de Hugging Face y pégalo
+    Presiona ENTER
+
+4️⃣  Cuando vea "Servidor ejecutándose en http://localhost:5000"
+    Abre index.html en navegador
+
+5️⃣  ¡Tu chatbot IA está listo! 🤖
+
+
+═══════════════════════════════════════════════════════════════════
+🎉 ¡LISTO PARA EMPEZAR!
+═══════════════════════════════════════════════════════════════════
+
+Todo está configurado. Solo necesitas:
+  1. Encontrar setup-and-run.bat
+  2. Haz doble clic
+  3. Pega tu token
+  4. ¡Disfruta! 🚀
+
+Si algo falla, revisa la sección de PROBLEMAS arriba.

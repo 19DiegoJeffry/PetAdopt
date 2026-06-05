@@ -1,0 +1,101 @@
+🤖 RESUMEN DE CAMBIOS - CHATBOT IA
+=====================================
+
+CAMBIOS REALIZADOS:
+===================
+
+1️⃣ SERVIDOR (server.js):
+   ✅ Añadida integración con Hugging Face API
+   ✅ Implementada función getAIResponse() para IA inteligente
+   ✅ Contexto del sistema personalizado para PetAdopt
+   ✅ Fallback automático a respuestas predefinidas si IA falla
+   ✅ Logs mejorados para debugging
+   ✅ Endpoint /api/chat ahora usa async/await
+
+2️⃣ DEPENDENCIAS (package.json):
+   ✅ Confirmado axios para llamadas HTTP a la API
+
+3️⃣ CONFIGURACIÓN (.env):
+   ✅ Nuevo archivo de configuración
+   ✅ Variable HF_API_KEY con token predefinido
+   ✅ Puerto configurable (5000)
+
+4️⃣ DOCUMENTACIÓN (CHATBOT_IA_GUIA.txt):
+   ✅ Guía completa de uso
+   ✅ Ejemplos de preguntas
+   ✅ Instrucciones de instalación
+   ✅ Solución de problemas
+
+CÓMO PROBAR:
+=============
+
+1. Asegúrate de tener Node.js instalado
+   - Descárgalo desde: https://nodejs.org/
+
+2. Instala las dependencias (primera vez):
+   npm install
+
+3. Inicia el servidor:
+   npm start
+   O: node server.js
+
+4. Abre index.html en tu navegador
+
+5. Haz clic en el chatbot y escribe una pregunta
+
+CARACTERÍSTICAS NUEVAS:
+========================
+
+✨ IA Natural: Responde como una IA real, no solo con plantillas
+✨ Contextual: Entiende preguntas complejas y relacionadas
+✨ Multilingüe: Responde en español con tono profesional
+✨ Robusto: Fallback automático si la IA no está disponible
+✨ Monitoreo: Logs en consola para ver qué está pasando
+
+EJEMPLOS DE PREGUNTAS QUE FUNCIONAN:
+=====================================
+
+"¿Cuál es el proceso para adoptar un perro en PetAdopt?"
+"Mi perro tiene 2 meses, ¿qué debo saber sobre sus cuidados?"
+"¿Qué hacer si mi perro vomita constantemente?"
+"¿Cuáles son las razas más amigables para familias?"
+"¿Cuánto cuesta la adopción?"
+
+TECNOLOGÍA USADA:
+=================
+
+Backend:
+- Node.js + Express (servidor web)
+- Axios (cliente HTTP)
+- CORS (permitir solicitudes desde navegador)
+- dotenv (variables de entorno)
+
+IA:
+- Hugging Face API (inferencia remota)
+- Modelo: Mistral-7B-Instruct-v0.1
+- Sistema: Prompt engineering personalizado
+
+Frontend:
+- JavaScript vanilla
+- HTML/CSS
+- Fetch API
+
+PROBLEMAS COMUNES:
+==================
+
+❌ "Cannot find module 'axios'"
+   → Ejecuta: npm install
+
+❌ "El chatbot no responde"
+   → Verifica que el servidor esté en http://localhost:5000
+   → Abre F12 en el navegador y busca errores
+
+❌ "Las respuestas tardan mucho"
+   → Normal la primera vez (2-3 segundos)
+   → Es la latencia de la API de Hugging Face
+
+❌ "El servidor no inicia"
+   → Verifica que el puerto 5000 esté disponible
+   → Intenta otro puerto: PORT=3000 node server.js
+
+¡Tu chatbot IA está listo! 🎉

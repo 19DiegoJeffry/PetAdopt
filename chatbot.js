@@ -1,11 +1,13 @@
-// Sistema de Chatbot IA integrado
+// Sistema de Chatbot IA integrado para PetAdopt
 let chatHistory = [];
 
 function toggleChat() {
     const chatWidget = document.getElementById('chatWidget');
     const chatBody = document.getElementById('chatBody');
-    chatWidget.classList.toggle('minimized');
-    chatBody.classList.toggle('hidden');
+    if (chatWidget && chatBody) {
+        chatWidget.classList.toggle('minimized');
+        chatBody.classList.toggle('hidden');
+    }
 }
 
 function handleChatKeypress(event) {
@@ -16,6 +18,7 @@ function handleChatKeypress(event) {
 
 function sendMessage() {
     const chatInput = document.getElementById('chatInput');
+    if (!chatInput) return;
     const message = chatInput.value.trim();
     
     if (message === '') return;
@@ -24,7 +27,7 @@ function sendMessage() {
     addMessageToChat(message, 'user-message');
     chatInput.value = '';
     
-    // Enviar a servidor backend para procesar con IA
+    // Intentar conectar con el servidor backend, si falla usa fallback local
     fetch('http://localhost:5000/api/chat', {
         method: 'POST',
         headers: {
@@ -32,18 +35,32 @@ function sendMessage() {
         },
         body: JSON.stringify({ message: message })
     })
-    .then(response => response.json())
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Respuesta de red no ok');
+        }
+        return response.json();
+    })
     .then(data => {
-        addMessageToChat(data.reply, 'bot-message');
+        if (data && data.reply) {
+            addMessageToChat(data.reply, 'bot-message');
+        } else {
+            throw new Error('Respuesta inválida del servidor');
+        }
     })
     .catch(error => {
-        console.error('Error:', error);
-        addMessageToChat('Disculpa, estoy teniendo problemas. Por favor intenta de nuevo.', 'bot-message');
+        console.warn('Backend offline o error en API. Usando respuestas locales de fallback:', error);
+        // Si no hay servidor o hay error, usa respuestas locales
+        const response = processMessage(message);
+        setTimeout(() => {
+            addMessageToChat(response, 'bot-message');
+        }, 500);
     });
 }
 
 function addMessageToChat(message, className) {
     const chatMessages = document.getElementById('chatMessages');
+    if (!chatMessages) return;
     const messageElement = document.createElement('div');
     messageElement.className = `message ${className}`;
     messageElement.textContent = message;
@@ -53,79 +70,84 @@ function addMessageToChat(message, className) {
     chatMessages.scrollTop = chatMessages.scrollHeight;
 }
 
-// Base de datos de respuestas para el chatbot (fallback si backend no está disponible)
+// Base de datos de respuestas enriquecida para el chatbot (fallback si backend no está disponible)
 const chatbotResponses = {
-    adopcion: "Para adoptar un perro, debes rellenar nuestro formulario de solicitud, proporcionar referencias, y realizar una entrevista. El proceso toma aproximadamente 2-3 semanas para asegurar que el perro encuentra el hogar perfecto.",
+    adopcion: "Para adoptar un perro en PetAdopt, debes: 1) Rellenar nuestro formulario de solicitud, 2) Proporcionar referencias personales y de carácter, 3) Realizar una entrevista con nuestro equipo, 4) Pasar las verificaciones de hogar. El proceso toma aproximadamente 2-3 semanas. El costo es de $50-150 USD que cubre vacunas, microchip y esterilización.",
     
-    cuidados: "Los cuidados básicos incluyen: alimentación de calidad, ejercicio diario, visitas al veterinario, vacunas, desparasitación, higiene y mucho amor. ¿Necesitas información específica sobre algún aspecto?",
+    cuidados: "Los cuidados básicos de un perro incluyen: alimentación de calidad (1-2 veces al día), ejercicio diario (30-60 minutos), visitas al veterinario (mínimo anual), vacunas completas, desparasitación trimestral, higiene regular (baños cada 4-6 semanas), cepillado del pelaje, corte de uñas, y sobre todo, mucho amor y socialización. ¿Necesitas información específica sobre algún aspecto?",
     
-    alimentacion: "Los perros adultos deben comer 1-2 veces al día. La cantidad depende de la raza y tamaño. Usa alimento de calidad premium y siempre proporciona agua fresca. Evita chocolate, uvas y cebolla.",
+    alimentacion: "La alimentación es crucial para la salud de tu perro. Adultos: 1-2 veces al día según la raza. Cachorros: 3-4 veces al día. Usa alimento premium balanceado nutricionalmente. Cantidad: depende del tamaño y metabolismo. IMPORTANTE: Siempre agua fresca disponible. EVITA: chocolate, uvas, pasas, cebolla, aguacate, alimentos tóxicos. Consulta con tu veterinario.",
     
-    salud: "Es importante llevar a tu perro al veterinario anualmente para chequeos, vacunas y desparasitación. La castración/esterilización se recomienda a los 6 meses de edad.",
+    salud: "La salud veterinaria es fundamental. Chequeos anuales obligatorios. Vacunas: rabia, moquillo, parvovirosis. Desparasitación: cada 3 meses. Esterilización/castración: a los 6 meses. Limpieza dental: anual. Signos de alerta: cambios de comportamiento, falta de apetito, vómito, diarrea.",
     
-    ejercicio: "Mínimo 30-60 minutos diarios de ejercicio según la raza. Esto incluye caminatas, juego e interacción. Los perros activos son perros más felices y saludables.",
+    ejercicio: "El ejercicio es vital: Mínimo 30-60 minutos diarios según la raza. Caminatas, juego activo, carrera. Razas grandes necesitan más. Ejercicio mental: juguetes inteligentes, entrenamiento. Un perro cansado es un perro feliz.",
     
-    higiene: "Baña a tu perro cada 4-6 semanas, cepilla su pelaje 2-3 veces por semana, corta sus uñas cada 3-4 semanas y limpia sus oídos semanalmente.",
+    higiene: "Higiene regular: Baños cada 4-6 semanas. Cepillado 2-3 veces por semana. Corte de uñas cada 3-4 semanas. Limpieza de oídos semanal. Cuidado dental diario o snacks dentales.",
     
-    comportamiento: "El entrenamiento temprano y los refuerzos positivos son clave. Establece rutinas claras, sé consistente y paciente. La socialización también es importante.",
+    comportamiento: "Entrenamiento esencial: Usa refuerzos positivos. Establece rutinas claras. Socialización temprana. Paciencia: los cambios toman tiempo. Considera un entrenador profesional si lo necesitas.",
     
-    emergencia: "En caso de emergencia veterinaria, llama a tu veterinario o a una clínica de emergencias 24/7. Signos de emergencia incluyen dificultad respiratoria, hemorragia, vómito persistente o letargo.",
+    emergencia: "Emergencias críticas: Dificultad respiratoria, hemorragia, vómito persistente, letargo, convulsiones, accidentes. ACCIÓN: Llama veterinario 24/7 INMEDIATAMENTE. Los minutos son críticos.",
     
-    contacto: "Puedes contactarnos en: 📧 info@petadopt.com | 📞 +1-800-PERROS | Estamos abiertos de lunes a viernes, 9am-6pm.",
+    contacto: "¡Contacta con PetAdopt! 📧 info@petadopt.com | 📞 +1-800-PERROS | 🕒 Lunes a viernes, 9am-6pm. O usa este chat. ¡Responderemos pronto!",
     
-    pagina: "PetAdopt es una plataforma dedicada a facilitar la adopción de perros rescatados y proporcionar información sobre cuidados responsables de mascotas.",
+    pagina: "PetAdopt conecta perros rescatados con familias amorosas. Hemos ayudado a 500+ perros a encontrar hogar con 200+ familias felices. Nuestra misión: facilitar adopción responsable e información completa sobre cuidados.",
     
-    perros: "Tenemos varias razas disponibles: Golden Retrievers, Labradores, Bulldogs Franceses, Cocker Spaniels, Pastores Alemanes y Beagles. ¿Te interesa alguna raza en particular?",
+    perros: "6 adorables perros esperan su familia: 🐕 Max (Golden Retriever, 2 años) 🐶 Bella (Labrador, 3 años) 🐕 Charlie (Bulldog, 1 año) 🐶 Lucy (Cocker Spaniel, 4 años) 🐕 Rocky (Pastor Alemán, 3 años) 🐶 Daisy (Beagle, 2 años)",
     
-    precio: "La adopción tiene un costo de $50-150 USD que cubre vacunas, microchip y esterilización. Esto ayuda a mantener nuestras operaciones de rescate.",
+    precio: "Adopción: $50-150 USD. Incluye: ✓ Vacunas ✓ Microchip ✓ Esterilización ✓ Chequeo veterinario ✓ Documentos. Ayuda a mantener operaciones de rescate.",
     
-    requisitos: "Requisitos básicos: mayor de 18 años, tener un hogar estable, poder proporcionar cuidado veterinario, referencias de carácter y disponibilidad de tiempo para el perro."
+    requisitos: "Para adoptar necesitas: ✓ Ser mayor de 18 ✓ Hogar estable ✓ Cuidado veterinario ✓ Tiempo disponible ✓ Referencias. Aseguramos que cada perro va a un hogar amoroso.",
+    
+    navegacion: "Menú superior PetAdopt: 📍 INICIO - Página principal 📍 ADOPTAR - Nuestros 6 perros 📍 CUIDADOS - Guía completa 📍 SOBRE NOSOTROS - Información",
+    
+    cuidados_seccion: "Sección CUIDADOS: 🍖 ALIMENTACIÓN 🏥 SALUD 🏃 EJERCICIO 🧼 HIGIENE 🏠 AMBIENTE ❤️ AMOR - 6 guías completas",
+    
+    galeria: "Galería ADOPCIÓN: 6 perros con nombre, edad, raza, descripción, botón 'Quiero Adoptar'. ¡Cada uno tiene historia única!",
+    
+    rex: "¡Soy Rex! 🐕 Tu asistente 24/7 de PetAdopt. Estoy aquí para ayudarte con: adopción, cuidados, preguntas sobre la página, nuestros perros, y más. ¡Pregúntame lo que necesites!",
+    
+    bienvenida: "¡Bienvenido a PetAdopt! Soy Rex 🐕. Puedo ayudarte con: 1) Conocer nuestros 6 perros 2) Aprender cuidados 3) Info adopción 4) Cualquier pregunta. ¿En qué puedo ayudarte?",
+    
+    proceso_adopcion: "Proceso PetAdopt: 1) Solicitud online 2) Revisión perfil 3) Entrevista 4) Verificación hogar 5) Aprobación 6) ¡Recoger perro! Toma 2-3 semanas.",
+    
+    seguimiento: "Post-adopción: Documentación legal, historial médico, consejos adaptación, acceso chat (conmigo, Rex), contactos veterinarios, comunidad online. ¡De por vida!",
+    
+    adaptacion: "Adaptar perro nuevo: Primeras semanas: espacio seguro, rutina, refuerzos positivos. Salidas cortas después. Socialización gradual. Entrenamiento paciente. Mucho amor diario. Cada perro es único."
 };
 
-// Función para procesar mensajes y buscar respuestas
+// Función para procesar mensajes y buscar respuestas locales (fallback)
 function processMessage(userMessage) {
     const lowerMessage = userMessage.toLowerCase();
     
-    // Palabras clave para diferentes tópicos
     const keywords = {
-        adopcion: ['adoptar', 'adopción', 'quiero adoptar', 'cómo adopto', 'proceso adopción'],
-        cuidados: ['cuidado', 'cuidados', 'cómo cuidar', 'qué necesita'],
-        alimentacion: ['comer', 'comida', 'alimentación', 'qué come', 'dieta'],
-        salud: ['salud', 'veterinario', 'enfermo', 'enfermedad', 'médico', 'vacuna'],
-        ejercicio: ['ejercicio', 'caminar', 'paseo', 'actividad', 'jugar'],
-        higiene: ['baño', 'limpio', 'higiene', 'grooming', 'peluquería'],
-        comportamiento: ['comportamiento', 'entrenamiento', 'entrenar', 'obediencia', 'trucos'],
-        emergencia: ['emergencia', 'urgencia', 'ayuda', 'problema', 'accidente'],
-        contacto: ['contacto', 'teléfono', 'email', 'cómo contactar', 'dirección'],
-        pagina: ['quién eres', 'qué es', 'acerca de', 'sobre ustedes', 'about'],
-        perros: ['qué perros', 'razas', 'qué tenéis', 'disponibles'],
-        precio: ['precio', 'costo', 'cuánto cuesta', 'tarifa', 'pago'],
-        requisitos: ['requisitos', 'qué necesito', 'cómo empiezo', 'condiciones']
+        adopcion: ['adoptar', 'adopción', 'quiero adoptar', 'cómo adopto', 'proceso adopción', 'pasos'],
+        cuidados: ['cuidado', 'cuidados', 'cómo cuidar', 'qué necesita', 'necesidades'],
+        alimentacion: ['comer', 'comida', 'alimentación', 'qué come', 'dieta', 'alimento', 'nutrición'],
+        salud: ['salud', 'veterinario', 'enfermo', 'enfermedad', 'médico', 'vacuna', 'chequeo', 'esterilización'],
+        ejercicio: ['ejercicio', 'caminar', 'paseo', 'actividad', 'jugar', 'correr', 'actividad física'],
+        higiene: ['baño', 'limpio', 'higiene', 'grooming', 'peluquería', 'aseo', 'cepillo', 'uñas', 'dientes'],
+        comportamiento: ['comportamiento', 'entrenamiento', 'entrenar', 'obediencia', 'trucos', 'disciplina', 'adiestramiento'],
+        emergencia: ['emergencia', 'urgencia', 'ayuda', 'problema', 'accidente', 'envenenamiento', 'crítico'],
+        contacto: ['contacto', 'teléfono', 'email', 'cómo contactar', 'dirección', 'ayuda', 'comunicarse', 'llamar'],
+        pagina: ['quién eres', 'qué es', 'acerca de', 'sobre ustedes', 'about', 'misión', 'objetivo', 'petadopt'],
+        perros: ['qué perros', 'razas', 'qué tenéis', 'disponibles', 'perros', 'max', 'bella', 'charlie', 'lucy', 'rocky', 'daisy', 'adoptar'],
+        precio: ['precio', 'costo', 'cuánto cuesta', 'tarifa', 'pago', 'cuesta', 'vale', 'dinero'],
+        requisitos: ['requisitos', 'qué necesito', 'cómo empiezo', 'condiciones', 'necesario', 'edad'],
+        navegacion: ['cómo navego', 'menú', 'dónde', 'cómo busco', 'home', 'inicio', 'sección', 'página'],
+        cuidados_seccion: ['sección cuidados', 'cuidados página', 'información cuidados', 'guía'],
+        galeria: ['galería', 'fotos', 'imágenes', 'donde estan los perros', 'ver perros'],
+        rex: ['quién eres', 'tu nombre', 'rex', 'asistente', 'quién soy'],
+        bienvenida: ['hola', 'hi', 'ayuda', 'ayúdame', 'necesito ayuda', 'qué puedes hacer', 'cómo funcionas'],
+        proceso_adopcion: ['paso', 'pasos', 'cómo es el proceso', 'detalle', 'fase'],
+        seguimiento: ['después adopción', 'post adopción', 'seguimiento', 'después de adoptar'],
+        adaptacion: ['adaptar perro', 'acostumbrar', 'nuevo hogar', 'adaptación', 'primeros días', 'cómo adaptarse'],
     };
     
-    // Buscar palabra clave coincidente
     for (const [topic, words] of Object.entries(keywords)) {
         if (words.some(word => lowerMessage.includes(word))) {
             return chatbotResponses[topic];
         }
     }
     
-    // Respuesta por defecto
-    return "¡Hola! Soy el asistente de PetAdopt. Puedo ayudarte con preguntas sobre adopción, cuidados, alimentación, salud, ejercicio, higiene, comportamiento, emergencias, contacto y más. ¿En qué puedo ayudarte?";
-}
-
-// Función fallback para cuando el servidor no está disponible
-function sendMessageFallback() {
-    const chatInput = document.getElementById('chatInput');
-    const message = chatInput.value.trim();
-    
-    if (message === '') return;
-    
-    addMessageToChat(message, 'user-message');
-    chatInput.value = '';
-    
-    const response = processMessage(message);
-    setTimeout(() => {
-        addMessageToChat(response, 'bot-message');
-    }, 500);
+    return "¡Hola! Soy Rex 🐕, tu asistente en PetAdopt. Puedo ayudarte con: adopción, cuidados, alimentación, salud, ejercicio, higiene, comportamiento, emergencias, navegación, preguntas sobre nuestros perros, precios, requisitos, y mucho más. ¿Qué necesitas saber?";
 }

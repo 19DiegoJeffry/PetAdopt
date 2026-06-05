@@ -1,0 +1,96 @@
+🔑 GUÍA: REVOCAR TOKEN VIEJO Y CREAR UNO NUEVO
+================================================
+
+⚠️ IMPORTANTE - ACCIÓN REQUERIDA:
+El token anterior fue expuesto. DEBES revocarlo y crear uno nuevo.
+
+PASO 1️⃣: REVOCAR EL TOKEN VIEJO
+==================================
+
+1. Abre tu navegador
+2. Ve a: https://huggingface.co/settings/tokens
+3. Inicia sesión si es necesario
+4. Busca el token expuesto (el que empieza por hf_)
+5. Haz clic en el icono 🗑️ (papelera) para eliminarlo
+6. Confirma la eliminación
+
+✅ Token viejo revocado y ya NO funcionará
+
+PASO 2️⃣: CREAR UN NUEVO TOKEN
+===============================
+
+1. En la misma página https://huggingface.co/settings/tokens
+2. Haz clic en el botón azul: "New token" o "Crear nuevo token"
+3. En el formulario:
+   - Nombre: "PetAdopt Chatbot" (o el nombre que prefieras)
+   - Tipo: Selecciona "Read" (lectura)
+   - Expiration: "Never" (nunca, o la que prefieras)
+4. Haz clic en "Create token"
+5. ⚡ IMPORTANTE: Copia el nuevo token inmediatamente (no podrás verlo de nuevo)
+   
+El nuevo token se verá así:
+   hf_aBcDeFgHiJkLmNoPqRsTuVwXyZ1234567890
+
+PASO 3️⃣: ACTUALIZAR TU ARCHIVO .env
+=====================================
+
+1. Abre el archivo: .env (en la raíz de tu proyecto)
+2. Encuentra esta línea:
+   HF_API_KEY=tu_nuevo_token_aqui
+
+3. Reemplázala con tu nuevo token:
+   HF_API_KEY=hf_aBcDeFgHiJkLmNoPqRsTuVwXyZ1234567890
+   (usa el token que copiaste en el paso anterior)
+
+4. Guarda el archivo (Ctrl+S)
+
+PASO 4️⃣: PROBAR QUE FUNCIONA
+==============================
+
+1. Abre una terminal/cmd en tu carpeta del proyecto
+2. Ejecuta:
+   npm start
+
+3. Abre index.html en tu navegador
+4. Prueba el chatbot con una pregunta
+5. Deberías ver respuestas generadas por la IA ✨
+
+PASO 5️⃣: CONFIRMAR SEGURIDAD
+============================
+
+Verifica que todo está seguro:
+
+✓ Token viejo revocado: https://huggingface.co/settings/tokens
+✓ Token nuevo en .env
+✓ .env en .gitignore (no se subirá a GitHub)
+✓ server.js usa process.env.HF_API_KEY
+
+¡Listo! Tu proyecto está completamente seguro 🔒
+
+PROBLEMAS COMUNES:
+==================
+
+❌ "Chatbot no responde después de cambiar el token"
+   → Reinicia el servidor (npm start)
+   → Limpia el cache del navegador (Ctrl+Shift+Delete)
+   → Recarga la página (Ctrl+F5)
+
+❌ "Error 401 o 403"
+   → El token no es válido
+   → Copia el token nuevamente (asegúrate de que sea completo)
+   → Revisa que no haya espacios al inicio/final en .env
+
+❌ "No puedo crear un token en Hugging Face"
+   → Verifica que tu cuenta esté verificada
+   → Intenta en una ventana de incógnito
+   → Contacta a Hugging Face: https://huggingface.co/support
+
+¿PREGUNTAS?
+===========
+Si algo no funciona, verifica:
+1. El token está correctamente copiado en .env
+2. El servidor está ejecutándose (npm start)
+3. La consola del navegador (F12) no muestra errores
+4. El puerto 5000 está disponible
+
+¡Tu chatbot IA está ahora seguro y listo! 🎉
