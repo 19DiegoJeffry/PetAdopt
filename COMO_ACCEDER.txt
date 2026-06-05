@@ -1,0 +1,290 @@
+════════════════════════════════════════════════════════════════════════════════
+                    ¿CÓMO ACCEDER A LAS NUEVAS SECCIONES?
+════════════════════════════════════════════════════════════════════════════════
+
+OPCIÓN 1: DESDE EL NAVEGADOR (MÁS FÁCIL)
+═════════════════════════════════════════════════════════════════════════════
+
+Paso 1: Abre la página en tu navegador
+────────────────────────────────────────
+• Ve a: c:\Users\anran\OneDrive\Documents\pagina web\pagina web\
+• Doble-click en: index.html
+• La página se abrirá en tu navegador predeterminado
+
+
+Paso 2: Navega a las nuevas secciones
+──────────────────────────────────────
+
+FORMA A: Usando el menú (Navbar)
+┌─────────────────────────────────────────────────────────────┐
+│ 🐾 PetAdopt │ Inicio │ Adoptar │ SOLICITAR ADOPCIÓN │       │
+│             │        │         │ DONACIONES │ REPORTAR ...│
+└─────────────────────────────────────────────────────────────┘
+
+• Click en "Solicitar Adopción" → Va a la sección #solicitar
+• Click en "Donaciones" → Va a la sección #donaciones
+• Click en "Reportar Perro" → Va a la sección #reportar
+
+FORMA B: Scroll hacia abajo
+└─ Simplemente haz scroll en la página
+└─ Verás las 3 secciones nuevas después de "Perros Disponibles"
+
+
+Paso 3: Completa los formularios
+─────────────────────────────────
+• Rellena los campos requeridos (marcados con *)
+• Haz clic en "Enviar Solicitud", "Donar Ahora" o "Enviar Reporte"
+
+
+Paso 4: Verifica que se guardó
+───────────────────────────────
+• Presiona F12 en tu teclado (DevTools)
+• Ve a: Application → LocalStorage
+• Busca la URL de tu página
+• ¡Verás los datos guardados en los 3 arrays!
+
+
+════════════════════════════════════════════════════════════════════════════════
+OPCIÓN 2: USAR SERVIDOR LOCAL
+════════════════════════════════════════════════════════════════════════════════
+
+Método A: Script automático (MÁS FÁCIL)
+────────────────────────────────────────
+1. Ve a: c:\Users\anran\OneDrive\Documents\pagina web\
+2. Doble-click en: iniciar_servidor.bat
+3. Se abrirá una ventana negra (terminal)
+4. Automáticamente se abrirá en navegador: http://localhost:8000
+5. ¡Ya puedes navegar!
+
+
+Método B: Línea de comandos
+─────────────────────────────
+1. Abre PowerShell (tecla Windows + R, escribe "powershell")
+2. Copia y pega estos comandos:
+
+   cd 'c:\Users\anran\OneDrive\Documents\pagina web\pagina web'
+   python -m http.server 8000
+
+3. Abre tu navegador en: http://localhost:8000
+4. ¡Listo!
+
+NOTA: Presiona Ctrl+C en la terminal para detener el servidor
+
+
+════════════════════════════════════════════════════════════════════════════════
+UBICACIÓN EN LA PÁGINA
+════════════════════════════════════════════════════════════════════════════════
+
+Orden de secciones en la página (de arriba a abajo):
+
+1. 🐾 NAVBAR (Menú de navegación)
+   ├─ Inicio
+   ├─ Adoptar
+   ├─ Solicitar Adopción ← NUEVA SECCIÓN 1
+   ├─ Donaciones ← NUEVA SECCIÓN 2
+   ├─ Reportar Perro ← NUEVA SECCIÓN 3
+   ├─ Cuidados
+   └─ Sobre Nosotros
+
+2. 🎬 HERO (Sección inicial)
+
+3. ℹ️ SOBRE NOSOTROS
+
+4. 🐕 ADOPTAR (Galería de perros)
+
+5. 📝 SOLICITAR ADOPCIÓN ← NUEVA
+   └─ Formulario de solicitud
+
+6. 💳 DONACIONES ← NUEVA
+   └─ Sistema de donaciones
+
+7. 🚨 REPORTAR PERROS ← NUEVA
+   └─ Reportar perros en abandono
+
+8. 📖 CUIDADOS
+
+9. 💬 CHATBOT (Widget en esquina)
+
+10. 👣 FOOTER
+
+
+════════════════════════════════════════════════════════════════════════════════
+PRUEBAS RÁPIDAS
+════════════════════════════════════════════════════════════════════════════════
+
+TEST 1: Formulario de Adopción
+───────────────────────────────
+1. Haz clic en "Solicitar Adopción" en navbar
+2. La página se desplaza automáticamente a esa sección
+3. Completa los campos:
+   • Nombre: Juan Pérez
+   • Email: juan@test.com
+   • Teléfono: +34 666 777 888
+   • Perro: Max
+   • Razón: Quiero adoptar porque siempre he querido un perro
+   • Experiencia: Tengo experiencia con mis mascotas anteriores
+   • Vivienda: Casa
+   • ¿Patio?: Sí
+4. Haz clic en "Enviar Solicitud"
+5. Deberías ver: "¡Gracias Juan! Tu solicitud..."
+6. Verifica en DevTools que está en localStorage
+
+
+TEST 2: Formulario de Donaciones
+─────────────────────────────────
+1. Haz clic en "Donaciones" en navbar
+2. Haz clic en "$50"
+3. Verifica que el botón se resalte en color turquesa
+4. El campo de cantidad debe mostrar: 50
+5. (Opcional) Marca "Hacer donación mensual"
+6. Haz clic en "💳 Donar Ahora"
+7. Deberías ver: "¡Gracias por tu donación de $50!"
+8. Verifica en DevTools que está en localStorage
+
+
+TEST 3: Formulario de Reporte
+──────────────────────────────
+1. Haz clic en "Reportar Perro" en navbar
+2. Completa los campos:
+   • Nombre: María López
+   • Email: maria@test.com
+   • Teléfono: +34 666 888 999
+   • Ubicación: Calle Principal 123, Madrid
+   • Raza: Labrador Mestizo
+   • Tamaño: Grande
+   • Urgencia: Crítica
+   • Descripción: Perro grande negro, parece abandonado...
+   • Foto: (Opcional) Sube una imagen
+3. Haz clic en "Enviar Reporte"
+4. Deberías ver: "¡Reporte recibido! 🐕" con "🚨 CRÍTICA"
+5. Verifica en DevTools que está en localStorage
+
+
+════════════════════════════════════════════════════════════════════════════════
+VER DATOS EN DEVTOOLS
+════════════════════════════════════════════════════════════════════════════════
+
+Paso 1: Abre DevTools
+──────────────────────
+• Presiona F12 en tu teclado
+• O haz clic derecho → "Inspeccionar"
+
+Paso 2: Navega a LocalStorage
+──────────────────────────────
+• En DevTools, busca la pestaña "Application" (o "Storage")
+• En el menú izquierdo: LocalStorage
+• Haz clic en tu URL (http://localhost:8000 o el archivo local)
+
+Paso 3: Expande los datos
+──────────────────────────
+Verás 3 arrays en el localStorage:
+
+1. adoptionSubmissions
+   └─ Contendrá todas las solicitudes que enviaste
+
+2. donations
+   └─ Contendrá todas las donaciones que registraste
+
+3. reports
+   └─ Contendrá todos los reportes que enviaste
+
+Cada elemento incluye:
+• Los datos que ingresaste
+• Timestamp (fecha y hora)
+
+
+════════════════════════════════════════════════════════════════════════════════
+SOLUCIÓN DE PROBLEMAS
+════════════════════════════════════════════════════════════════════════════════
+
+❌ "No veo las nuevas secciones"
+───────────────────────────────
+✓ Solución: Haz scroll hacia abajo
+✓ O click en navbar en "Solicitar Adopción", "Donaciones", "Reportar Perro"
+
+❌ "Me dice que falta un campo"
+───────────────────────────────
+✓ Solución: Rellena todos los campos marcados con asterisco (*)
+✓ Verifica que email tenga formato válido (ej: algo@algo.com)
+
+❌ "No veo los datos guardados"
+──────────────────────────────
+✓ Solución: Abre DevTools (F12)
+✓ Ve a: Application → LocalStorage
+✓ Busca exactamente tu URL (copia-pega)
+
+❌ "El formulario no funciona"
+──────────────────────────────
+✓ Abre DevTools (F12)
+✓ Ve a la pestaña "Console"
+✓ Busca errores en rojo
+✓ Si hay errores, copia el mensaje
+
+❌ "La foto no aparece"
+──────────────────────
+✓ Solución: Es normal - la foto se almacena pero no se muestra de vuelta
+✓ El preview aparece mientras la seleccionas
+✓ Los datos indican si hay foto con "hasPhoto: true"
+
+❌ "Los botones de donación no se resaltan"
+───────────────────────────────────────────
+✓ Solución: Verifica que JavaScript esté habilitado en tu navegador
+✓ Actualiza la página (Ctrl+R o F5)
+
+❌ "El servidor no inicia"
+──────────────────────────
+✓ Verifica que Python esté instalado: python --version
+✓ Usa el método 1 (Abrir directamente en navegador)
+✓ O intenta con otro puerto: python -m http.server 9000
+
+
+════════════════════════════════════════════════════════════════════════════════
+ATAJOS DE TECLADO
+════════════════════════════════════════════════════════════════════════════════
+
+F12                  → Abre DevTools
+Ctrl+R (o F5)        → Actualizar página
+Ctrl+Shift+Delete    → Limpiar datos localStorage
+End (o Ctrl+End)     → Ir al final de la página
+Home (o Ctrl+Home)   → Ir al inicio de la página
+Click + Ctrl         → Abrir enlace en nueva pestaña
+
+
+════════════════════════════════════════════════════════════════════════════════
+¿NECESITAS LIMPIAR LOS DATOS?
+════════════════════════════════════════════════════════════════════════════════
+
+Método 1: Desde DevTools
+────────────────────────
+1. Abre DevTools (F12)
+2. Application → LocalStorage
+3. Haz clic derecho en tu URL
+4. Click en "Delete" o "Clear"
+
+Método 2: Desde código
+──────────────────────
+1. Abre DevTools (F12)
+2. Ve a la pestaña "Console"
+3. Copia y pega estas líneas:
+
+   localStorage.removeItem('adoptionSubmissions');
+   localStorage.removeItem('donations');
+   localStorage.removeItem('reports');
+
+4. Presiona Enter
+
+
+════════════════════════════════════════════════════════════════════════════════
+RESUMEN RÁPIDO
+════════════════════════════════════════════════════════════════════════════════
+
+PARA PROBAR:
+1. Abre: c:\Users\anran\OneDrive\Documents\pagina web\pagina web\index.html
+2. Doble-click → Se abre en navegador
+3. Scroll o navbar → Ve a las nuevas secciones
+4. Completa formularios
+5. F12 → Ve los datos en localStorage
+
+¡ESO ES TODO! 🎉
+
+════════════════════════════════════════════════════════════════════════════════

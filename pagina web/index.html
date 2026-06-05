@@ -1,0 +1,1492 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🐕 PetAdopt - Adopta tu Mejor Amigo</title>
+    <style>
+/* Estilos Generales */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-color: #FF6B6B;
+    --secondary-color: #4ECDC4;
+    --dark-color: #2C3E50;
+    --light-color: #ECF0F1;
+    --text-color: #333;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--text-color);
+    background-color: #fff;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Navbar */
+.navbar {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: white;
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+.nav-link {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    transition: opacity 0.3s ease;
+}
+
+.nav-link:hover {
+    opacity: 0.8;
+}
+
+/* Hero Section */
+.hero {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 100px 20px;
+    text-align: center;
+    min-height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-content h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    animation: slideDown 0.6s ease;
+}
+
+.hero-content p {
+    font-size: 1.3rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Botones */
+.btn {
+    padding: 12px 30px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #FF5252;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(255, 107, 107, 0.4);
+}
+
+/* About Section */
+.about {
+    padding: 60px 20px;
+    background-color: var(--light-color);
+}
+
+.about h2,
+.adoption h2,
+.care h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    color: var(--dark-color);
+}
+
+.about p {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 3rem;
+    font-size: 1.1rem;
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.stat-item {
+    text-align: center;
+    padding: 2rem;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.stat-item h3 {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.stat-item p {
+    color: #666;
+    font-size: 1.1rem;
+}
+
+/* Adoption Section */
+.adoption {
+    padding: 60px 20px;
+}
+
+.dogs-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.dog-card {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+.dog-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.dog-image {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 4rem;
+}
+
+.dog-info {
+    padding: 1.5rem;
+}
+
+.dog-name {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.dog-details {
+    font-size: 0.95rem;
+    color: #666;
+    margin-bottom: 1rem;
+}
+
+.dog-details p {
+    margin: 0.3rem 0;
+}
+
+.btn-adopt {
+    width: 100%;
+    background-color: var(--secondary-color);
+    color: white;
+}
+
+.btn-adopt:hover {
+    background-color: #3ab5b0;
+}
+
+/* Care Section */
+.care {
+    padding: 60px 20px;
+    background-color: var(--light-color);
+}
+
+.care-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.care-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.care-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.care-card h3 {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    border-bottom: 2px solid var(--secondary-color);
+    padding-bottom: 0.5rem;
+}
+
+.care-card p {
+    margin-bottom: 0.8rem;
+    font-size: 0.95rem;
+    line-height: 1.8;
+}
+
+.care-card strong {
+    color: var(--dark-color);
+}
+
+/* Chatbot Widget */
+.chat-widget {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 350px;
+    max-height: 600px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.chat-header {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    padding: 1rem;
+    border-radius: 10px 10px 0 0;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+}
+
+.chat-toggle {
+    transition: transform 0.3s ease;
+}
+
+.chat-widget.minimized .chat-toggle {
+    transform: rotate(180deg);
+}
+
+.chat-body {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    max-height: 520px;
+}
+
+.chat-body.hidden {
+    display: none;
+}
+
+.chat-messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1rem;
+    background-color: #f9f9f9;
+}
+
+.message {
+    margin-bottom: 1rem;
+    padding: 0.8rem;
+    border-radius: 8px;
+    max-width: 85%;
+    word-wrap: break-word;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.user-message {
+    background-color: var(--secondary-color);
+    color: white;
+    margin-left: auto;
+    text-align: right;
+}
+
+.bot-message {
+    background-color: #e8e8e8;
+    color: var(--text-color);
+    margin-right: auto;
+}
+
+.chat-input-area {
+    display: flex;
+    gap: 0.5rem;
+    padding: 1rem;
+    border-top: 1px solid #ddd;
+    background: white;
+}
+
+.chat-input {
+    flex: 1;
+    padding: 0.6rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.chat-input:focus {
+    border-color: var(--primary-color);
+}
+
+.chat-send {
+    padding: 0.6rem 1rem;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.chat-send:hover {
+    background-color: #FF5252;
+}
+
+/* Footer */
+.footer {
+    background-color: var(--dark-color);
+    color: white;
+    text-align: center;
+    padding: 2rem;
+    margin-top: 4rem;
+}
+
+.footer p {
+    margin: 0.5rem 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+
+    .nav-menu {
+        gap: 1rem;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        background: var(--primary-color);
+        width: 100%;
+        padding: 1rem;
+        display: none;
+    }
+
+    .nav-menu.active {
+        display: flex;
+    }
+
+    .about h2,
+    .adoption h2,
+    .care h2 {
+        font-size: 2rem;
+    }
+
+    .dogs-gallery {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 1rem;
+    }
+
+    .care-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .chat-widget {
+        width: 90%;
+        max-width: 350px;
+        right: 5%;
+        left: 5%;
+    }
+
+    .stats {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Scrollbar */
+.chat-messages::-webkit-scrollbar {
+    width: 6px;
+}
+
+.chat-messages::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.chat-messages::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 3px;
+}
+
+.chat-messages::-webkit-scrollbar-thumb:hover {
+    background: #FF5252;
+}
+
+/* Sección Solicitar Adopción */
+.solicitar-adopcion {
+    padding: 60px 20px;
+    background-color: #f8f9fa;
+}
+
+.solicitar-adopcion h2,
+.donaciones h2,
+.reportar-perros h2 {
+    font-size: 2.5rem;
+    color: var(--dark-color);
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.section-description {
+    text-align: center;
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 2rem;
+}
+
+.form-container {
+    max-width: 700px;
+    margin: 0 auto;
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group.full-width {
+    grid-column: 1 / -1;
+}
+
+.form-group label {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--dark-color);
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    padding: 0.8rem;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    font-size: 0.95rem;
+    font-family: inherit;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: var(--secondary-color);
+}
+
+.btn-submit {
+    grid-column: 1 / -1;
+    background-color: var(--secondary-color);
+    color: white;
+    padding: 1rem;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-submit:hover {
+    background-color: #3ab5b0;
+}
+
+/* Sección Donaciones */
+.donaciones {
+    padding: 60px 20px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.donaciones h2 {
+    color: white;
+}
+
+.donation-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.donation-info-item {
+    text-align: center;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 2rem;
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+}
+
+.donation-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.donation-info-item h3 {
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+}
+
+.donation-form-container {
+    max-width: 600px;
+    margin: 0 auto;
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    color: var(--text-color);
+}
+
+.donation-form-container h3 {
+    text-align: center;
+    color: var(--dark-color);
+    margin-bottom: 1.5rem;
+}
+
+.donation-amounts {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.donation-btn {
+    padding: 1rem;
+    border: 2px solid var(--secondary-color);
+    background-color: white;
+    color: var(--secondary-color);
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.donation-btn:hover,
+.donation-btn.active {
+    background-color: var(--secondary-color);
+    color: white;
+}
+
+.donation-form {
+    display: grid;
+    gap: 1rem;
+}
+
+.custom-donation {
+    display: flex;
+    flex-direction: column;
+}
+
+.custom-donation input {
+    padding: 0.8rem;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    font-size: 0.95rem;
+}
+
+.btn-donate {
+    background-color: var(--secondary-color);
+    color: white;
+    padding: 1rem;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-donate:hover {
+    background-color: #3ab5b0;
+}
+
+/* Sección Reportar Perros */
+.reportar-perros {
+    padding: 60px 20px;
+    background-color: #fff5f7;
+}
+
+.reportar-perros h2 {
+    color: var(--primary-color);
+}
+
+.photo-preview {
+    margin-top: 1rem;
+    max-width: 200px;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.photo-preview img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .solicitar-adopcion h2,
+    .donaciones h2,
+    .reportar-perros h2 {
+        font-size: 1.8rem;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .donation-amounts {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .donation-info {
+        grid-template-columns: 1fr;
+    }
+}
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">🐾 PetAdopt</div>
+            <ul class="nav-menu">
+                <li><a href="#inicio" class="nav-link">Inicio</a></li>
+                <li><a href="#adoptar" class="nav-link">Adoptar</a></li>
+                <li><a href="#solicitar" class="nav-link">Solicitar Adopción</a></li>
+                <li><a href="#donaciones" class="nav-link">Donaciones</a></li>
+                <li><a href="#reportar" class="nav-link">Reportar Perro</a></li>
+                <li><a href="#cuidados" class="nav-link">Cuidados</a></li>
+                <li><a href="#nosotros" class="nav-link">Sobre Nosotros</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="hero">
+        <div class="hero-content">
+            <h1>Dale un Hogar a un Perrito</h1>
+            <p>Encuentra tu compañero perfecto y transforma vidas juntos</p>
+            <button class="btn btn-primary" onclick="document.getElementById('adoptar').scrollIntoView({behavior: 'smooth'})">
+                Explorar Perros
+            </button>
+        </div>
+    </section>
+
+    <!-- Sección Sobre Nosotros -->
+    <section id="nosotros" class="about">
+        <div class="container">
+            <h2>Sobre PetAdopt</h2>
+            <p>
+                PetAdopt es una plataforma dedicada a conectar perros rescatados con familias amorosas.
+                Nuestro objetivo es facilitar el proceso de adopción y proporcionar información completa
+                sobre el cuidado responsable de mascotas.
+            </p>
+            <div class="stats">
+                <div class="stat-item">
+                    <h3>500+</h3>
+                    <p>Perros Adoptados</p>
+                </div>
+                <div class="stat-item">
+                    <h3>200+</h3>
+                    <p>Familias Felices</p>
+                </div>
+                <div class="stat-item">
+                    <h3>24/7</h3>
+                    <p>Soporte con Chatbot</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de Adopción -->
+    <section id="adoptar" class="adoption">
+        <div class="container">
+            <h2>Perros Disponibles para Adoptar</h2>
+            <div class="dogs-gallery" id="dogsGallery">
+                <!-- Se llena dinámicamente con JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de Cuidados -->
+    <section id="cuidados" class="care">
+        <div class="container">
+            <h2>Guía de Cuidados para Perros</h2>
+            
+            <div class="care-grid">
+                <div class="care-card">
+                    <h3>🍖 Alimentación</h3>
+                    <p><strong>Edad:</strong> El alimento varía según la edad del perro (cachorro, adulto, adulto mayor).</p>
+                    <p><strong>Cantidad:</strong> De 1 a 2 veces al día, según la raza y tamaño.</p>
+                    <p><strong>Tipo de alimento:</strong> Alimento de calidad premium, balanceado nutricionalmente.</p>
+                    <p><strong>Agua fresca:</strong> Siempre disponible.</p>
+                    <p><strong>Evitar:</strong> Chocolate, uvas, cebolla, alimentos tóxicos.</p>
+                </div>
+
+                <div class="care-card">
+                    <h3>🏥 Salud y Veterinario</h3>
+                    <p><strong>Visitas regulares:</strong> Checkeo anual con veterinario.</p>
+                    <p><strong>Vacunas:</strong> Mantener al día (rabia, moquillo, parvovirosis).</p>
+                    <p><strong>Desparasitación:</strong> Cada 3 meses para parásitos internos y externos.</p>
+                    <p><strong>Esterilización/Castración:</strong> Recomendada a los 6 meses de edad.</p>
+                    <p><strong>Emergencias:</strong> Ten a mano un veterinario de urgencias.</p>
+                </div>
+
+                <div class="care-card">
+                    <h3>🏃 Ejercicio y Actividad Física</h3>
+                    <p><strong>Caminatas diarias:</strong> Mínimo 30-60 minutos según la raza.</p>
+                    <p><strong>Juego e interacción:</strong> 20-30 minutos de juego interactivo.</p>
+                    <p><strong>Socialización:</strong> Contacto con otros perros y personas.</p>
+                    <p><strong>Estimulación mental:</strong> Juguetes inteligentes y entrenamiento.</p>
+                    <p><strong>Razas activas:</strong> Requieren más ejercicio que razas sedentarias.</p>
+                </div>
+
+                <div class="care-card">
+                    <h3>🧼 Higiene y Grooming</h3>
+                    <p><strong>Baños:</strong> Cada 4-6 semanas con champú específico para perros.</p>
+                    <p><strong>Cepillado:</strong> 2-3 veces por semana según tipo de pelaje.</p>
+                    <p><strong>Corte de uñas:</strong> Cada 3-4 semanas.</p>
+                    <p><strong>Limpieza de oídos:</strong> Semanal con solución especial.</p>
+                    <p><strong>Cuidado dental:</strong> Cepillado diario o uso de snacks dentales.</p>
+                </div>
+
+                <div class="care-card">
+                    <h3>🏠 Ambiente y Seguridad</h3>
+                    <p><strong>Espacio seguro:</strong> Área libre de tóxicos y peligros.</p>
+                    <p><strong>Microchip:</strong> Identificación en caso de pérdida.</p>
+                    <p><strong>Cama cómoda:</strong> Lugar tranquilo para descansar.</p>
+                    <p><strong>Control de temperatura:</strong> Evitar mucho calor o frío extremo.</p>
+                    <p><strong>Valla segura:</strong> Si tiene acceso a patio.</p>
+                </div>
+
+                <div class="care-card">
+                    <h3>❤️ Amor y Socialización</h3>
+                    <p><strong>Tiempo de calidad:</strong> Mínimo 1-2 horas diarias de interacción.</p>
+                    <p><strong>Entrenamientos:</strong> Establece rutinas y reglas claras.</p>
+                    <p><strong>Socialización temprana:</strong> Exponlo a diferentes ambientes.</p>
+                    <p><strong>Paseos variados:</strong> Diferentes lugares y experiencias.</p>
+                    <p><strong>Refuerzos positivos:</strong> Premios y elogios por buen comportamiento.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Solicitar Adopción -->
+    <section id="solicitar" class="solicitar-adopcion">
+        <div class="container">
+            <h2>Solicitar Adopción</h2>
+            <p class="section-description">Completa el formulario para solicitar adoptar un perro de nuestro refugio</p>
+            
+            <div class="form-container">
+                <form id="adoptionForm" class="form-grid">
+                    <div class="form-group">
+                        <label for="adopterName">Nombre Completo *</label>
+                        <input type="text" id="adopterName" name="name" required placeholder="Tu nombre">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="adopterEmail">Correo Electrónico *</label>
+                        <input type="email" id="adopterEmail" name="email" required placeholder="tu@email.com">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="adopterPhone">Teléfono *</label>
+                        <input type="tel" id="adopterPhone" name="phone" required placeholder="+1-234-567-8900">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="adoptDog">Perro a Adoptar *</label>
+                        <select id="adoptDog" name="dog" required>
+                            <option value="">-- Selecciona un perro --</option>
+                            <option value="Max">Max - Golden Retriever</option>
+                            <option value="Bella">Bella - Labrador</option>
+                            <option value="Charlie">Charlie - Bulldog Francés</option>
+                            <option value="Lucy">Lucy - Cocker Spaniel</option>
+                            <option value="Rocky">Rocky - Pastor Alemán</option>
+                            <option value="Daisy">Daisy - Beagle</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <label for="adoptReason">¿Por qué deseas adoptar? *</label>
+                        <textarea id="adoptReason" name="reason" required placeholder="Cuéntanos tu motivación..." rows="4"></textarea>
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <label for="adoptExperience">Experiencia previa con perros *</label>
+                        <textarea id="adoptExperience" name="experience" required placeholder="Describe tu experiencia..." rows="3"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="adoptHouseType">Tipo de vivienda *</label>
+                        <select id="adoptHouseType" name="houseType" required>
+                            <option value="">-- Selecciona --</option>
+                            <option value="house">Casa</option>
+                            <option value="apartment">Apartamento</option>
+                            <option value="other">Otra</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="adoptYard">¿Tienes patio? *</label>
+                        <select id="adoptYard" name="yard" required>
+                            <option value="">-- Selecciona --</option>
+                            <option value="yes">Sí</option>
+                            <option value="no">No</option>
+                        </select>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-submit">Enviar Solicitud</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Donaciones -->
+    <section id="donaciones" class="donaciones">
+        <div class="container">
+            <h2>Apoya Nuestro Refugio</h2>
+            <p class="section-description">Tu donación ayuda a cuidar y rescatar perros en necesidad</p>
+            
+            <div class="donation-info">
+                <div class="donation-info-item">
+                    <div class="donation-icon">🐕</div>
+                    <h3>Rescate</h3>
+                    <p>Rescatamos perros de situaciones de riesgo</p>
+                </div>
+                <div class="donation-info-item">
+                    <div class="donation-icon">🏥</div>
+                    <h3>Atención Médica</h3>
+                    <p>Cuidados veterinarios completos</p>
+                </div>
+                <div class="donation-info-item">
+                    <div class="donation-icon">🏠</div>
+                    <h3>Refugio</h3>
+                    <p>Alojamiento seguro y cómodo</p>
+                </div>
+            </div>
+            
+            <div class="donation-form-container">
+                <h3>Realiza tu Donación</h3>
+                <form id="donationForm" class="donation-form">
+                    <div class="donation-amounts">
+                        <button type="button" class="donation-btn" data-amount="10">$10</button>
+                        <button type="button" class="donation-btn" data-amount="25">$25</button>
+                        <button type="button" class="donation-btn" data-amount="50">$50</button>
+                        <button type="button" class="donation-btn" data-amount="100">$100</button>
+                    </div>
+                    
+                    <div class="form-group custom-donation">
+                        <label for="customAmount">Cantidad personalizada</label>
+                        <input type="number" id="customAmount" name="customAmount" placeholder="$" min="1">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="donorEmail">Tu Correo Electrónico</label>
+                        <input type="email" id="donorEmail" name="email" placeholder="tu@email.com">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" id="recurringDonation" name="recurring">
+                            Hacer donación mensual
+                        </label>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-donate">💳 Donar Ahora</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Reportar Perros -->
+    <section id="reportar" class="reportar-perros">
+        <div class="container">
+            <h2>Reportar un Perro en Abandono</h2>
+            <p class="section-description">Ayuda a los perros que lo necesitan reportando casos de abandono o perros callejeros</p>
+            
+            <div class="form-container">
+                <form id="reportForm" class="form-grid">
+                    <div class="form-group">
+                        <label for="reporterName">Tu Nombre *</label>
+                        <input type="text" id="reporterName" name="name" required placeholder="Tu nombre">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="reporterEmail">Tu Correo Electrónico *</label>
+                        <input type="email" id="reporterEmail" name="email" required placeholder="tu@email.com">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="reporterPhone">Tu Teléfono *</label>
+                        <input type="tel" id="reporterPhone" name="phone" required placeholder="+1-234-567-8900">
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <label for="reportLocation">Ubicación del Perro *</label>
+                        <input type="text" id="reportLocation" name="location" required placeholder="Calle, ciudad, código postal...">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="reportBreed">Raza aproximada *</label>
+                        <input type="text" id="reportBreed" name="breed" required placeholder="Ej: Labrador, Mestizo...">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="reportSize">Tamaño *</label>
+                        <select id="reportSize" name="size" required>
+                            <option value="">-- Selecciona --</option>
+                            <option value="small">Pequeño</option>
+                            <option value="medium">Mediano</option>
+                            <option value="large">Grande</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="reportUrgency">Nivel de Urgencia *</label>
+                        <select id="reportUrgency" name="urgency" required>
+                            <option value="">-- Selecciona --</option>
+                            <option value="critical">Crítica (Requiere atención inmediata)</option>
+                            <option value="high">Alta (Próximas horas)</option>
+                            <option value="medium">Media (Próximos días)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <label for="reportDescription">Descripción detallada *</label>
+                        <textarea id="reportDescription" name="description" required placeholder="Describe el estado del perro, comportamiento, color, características especiales..." rows="4"></textarea>
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <label for="reportPhoto">Foto del perro (opcional)</label>
+                        <input type="file" id="reportPhoto" name="photo" accept="image/*" onchange="previewPhoto(event)">
+                        <div id="photoPreview" class="photo-preview"></div>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-submit">Enviar Reporte</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Chatbot Widget -->
+    <div id="chatWidget" class="chat-widget">
+        <div class="chat-header" onclick="toggleChat()">
+            <span>🐕 Rex - Asistente PetAdopt</span>
+            <span class="chat-toggle">▼</span>
+        </div>
+        <div id="chatBody" class="chat-body">
+            <div id="chatMessages" class="chat-messages">
+                <div class="message bot-message">
+                    ¡Hola! Soy Rex 🐕, el asistente de PetAdopt. Estoy aquí para ayudarte con preguntas sobre adopción, cuidados de perros, o cualquier cosa sobre nuestra plataforma. ¿En qué puedo ayudarte?
+                </div>
+            </div>
+            <div class="chat-input-area">
+                <input 
+                    type="text" 
+                    id="chatInput" 
+                    class="chat-input" 
+                    placeholder="Escribe tu pregunta..."
+                    onkeypress="handleChatKeypress(event)"
+                >
+                <button class="chat-send" onclick="sendMessage()">📤</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 PetAdopt. Todos los derechos reservados. | 🐾 Hecho con amor para nuestros perros</p>
+            <p>📧 Contacto: info@petadopt.com | 📞 +1-800-PERROS</p>
+        </div>
+    </footer>
+
+    <script src="chatbot.js"></script>
+    <script src="main.js"></script>
+    <script>
+// Base de datos de perros disponibles para adoptar
+const dogsData = [
+    {
+        name: "Max",
+        age: 2,
+        breed: "Golden Retriever",
+        description: "Amigable, energético y perfecto para familias.",
+        emoji: "🐕"
+    },
+    {
+        name: "Bella",
+        age: 3,
+        breed: "Labrador",
+        description: "Dulce y leal, adora jugar y paseos largos.",
+        emoji: "🐶"
+    },
+    {
+        name: "Charlie",
+        age: 1,
+        breed: "Bulldog Francés",
+        description: "Pequeño pero valiente, perfecto para apartamentos.",
+        emoji: "🐕"
+    },
+    {
+        name: "Lucy",
+        age: 4,
+        breed: "Cocker Spaniel",
+        description: "Inteligente y cariñosa, muy obediente.",
+        emoji: "🐶"
+    },
+    {
+        name: "Rocky",
+        age: 3,
+        breed: "Pastor Alemán",
+        description: "Protector y leal, requiere ejercicio regular.",
+        emoji: "🐕"
+    },
+    {
+        name: "Daisy",
+        age: 2,
+        breed: "Beagle",
+        description: "Aventurera y curiosa, ideal para familias activas.",
+        emoji: "🐶"
+    }
+];
+
+// Función para cargar los perros en la galería
+function loadDogs() {
+    const dogsGallery = document.getElementById('dogsGallery');
+    dogsGallery.innerHTML = '';
+    
+    dogsData.forEach(dog => {
+        const dogCard = document.createElement('div');
+        dogCard.className = 'dog-card';
+        dogCard.innerHTML = `
+            <div class="dog-image">${dog.emoji}</div>
+            <div class="dog-info">
+                <div class="dog-name">${dog.name}</div>
+                <div class="dog-details">
+                    <p><strong>Edad:</strong> ${dog.age} años</p>
+                    <p><strong>Raza:</strong> ${dog.breed}</p>
+                    <p>${dog.description}</p>
+                </div>
+                <button class="btn btn-adopt" onclick="alert('¡Gracias por tu interés en adoptar a ${dog.name}! Pronto te contactaremos.')">
+                    Quiero Adoptar
+                </button>
+            </div>
+        `;
+        dogsGallery.appendChild(dogCard);
+    });
+}
+
+// Sistema de Chatbot IA integrado
+let chatHistory = [];
+
+function toggleChat() {
+    const chatWidget = document.getElementById('chatWidget');
+    const chatBody = document.getElementById('chatBody');
+    chatWidget.classList.toggle('minimized');
+    chatBody.classList.toggle('hidden');
+}
+
+function handleChatKeypress(event) {
+    if (event.key === 'Enter') {
+        sendMessage();
+    }
+}
+
+function sendMessage() {
+    const chatInput = document.getElementById('chatInput');
+    const message = chatInput.value.trim();
+    
+    if (message === '') return;
+    
+    addMessageToChat(message, 'user-message');
+    chatInput.value = '';
+    
+    // Intenta conectar con servidor backend, si falla usa fallback
+    fetch('http://localhost:5000/api/chat', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ message: message })
+    })
+    .then(response => response.json())
+    .then(data => {
+        addMessageToChat(data.reply, 'bot-message');
+    })
+    .catch(error => {
+        // Si no hay servidor, usa respuestas locales
+        const response = processMessage(message);
+        setTimeout(() => {
+            addMessageToChat(response, 'bot-message');
+        }, 500);
+    });
+}
+
+function addMessageToChat(message, className) {
+    const chatMessages = document.getElementById('chatMessages');
+    const messageElement = document.createElement('div');
+    messageElement.className = `message ${className}`;
+    messageElement.textContent = message;
+    chatMessages.appendChild(messageElement);
+    
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
+// Base de datos de respuestas para el chatbot
+const chatbotResponses = {
+    adopcion: "Para adoptar un perro en PetAdopt, debes: 1) Rellenar nuestro formulario de solicitud, 2) Proporcionar referencias personales y de carácter, 3) Realizar una entrevista con nuestro equipo, 4) Pasar las verificaciones de hogar. El proceso toma aproximadamente 2-3 semanas. El costo es de $50-150 USD que cubre vacunas, microchip y esterilización.",
+    
+    cuidados: "Los cuidados básicos de un perro incluyen: alimentación de calidad (1-2 veces al día), ejercicio diario (30-60 minutos), visitas al veterinario (mínimo anual), vacunas completas, desparasitación trimestral, higiene regular (baños cada 4-6 semanas), cepillado del pelaje, corte de uñas, y sobre todo, mucho amor y socialización. ¿Necesitas información específica sobre algún aspecto?",
+    
+    alimentacion: "La alimentación es crucial para la salud de tu perro. Adultos: 1-2 veces al día según la raza. Cachorros: 3-4 veces al día. Usa alimento premium balanceado nutricionalmente. Cantidad: depende del tamaño y metabolismo. IMPORTANTE: Siempre agua fresca disponible. EVITA: chocolate, uvas, pasas, cebolla, aguacate, alimentos tóxicos. Consults con tu veterinario.",
+    
+    salud: "La salud veterinaria es fundamental. Chequeos anuales obligatorios. Vacunas: rabia, moquillo, parvovirosis. Desparasitación: cada 3 meses. Esterilización/castración: a los 6 meses. Limpieza dental: anual. Signos de alerta: cambios de comportamiento, falta de apetito, vómito, diarrea.",
+    
+    ejercicio: "El ejercicio es vital: Mínimo 30-60 minutos diarios según la raza. Caminatas, juego activo, carrera. Razas grandes necesitan más. Ejercicio mental: juguetes inteligentes, entrenamiento. Un perro cansado es un perro feliz.",
+    
+    higiene: "Higiene regular: Baños cada 4-6 semanas. Cepillado 2-3 veces por semana. Corte de uñas cada 3-4 semanas. Limpieza de oídos semanal. Cuidado dental diario o snacks dentales.",
+    
+    comportamiento: "Entrenamiento esencial: Usa refuerzos positivos. Establece rutinas claras. Socialización temprana. Paciencia: los cambios toman tiempo. Considera un entrenador profesional si lo necesitas.",
+    
+    emergencia: "Emergencias críticas: Dificultad respiratoria, hemorragia, vómito persistente, letargo, convulsiones, accidentes. ACCIÓN: Llama veterinario 24/7 INMEDIATAMENTE. Los minutos son críticos.",
+    
+    contacto: "¡Contacta con PetAdopt! 📧 info@petadopt.com | 📞 +1-800-PERROS | 🕒 Lunes a viernes, 9am-6pm. O usa este chat. ¡Responderemos pronto!",
+    
+    pagina: "PetAdopt conecta perros rescatados con familias amorosas. Hemos ayudado a 500+ perros encontrar hogar con 200+ familias felices. Nuestra misión: facilitar adopción responsable e información completa sobre cuidados.",
+    
+    perros: "6 adorables perros esperan su familia: 🐕 Max (Golden Retriever, 2 años) 🐶 Bella (Labrador, 3 años) 🐕 Charlie (Bulldog, 1 año) 🐶 Lucy (Cocker Spaniel, 4 años) 🐕 Rocky (Pastor Alemán, 3 años) 🐶 Daisy (Beagle, 2 años)",
+    
+    precio: "Adopción: $50-150 USD. Incluye: ✓ Vacunas ✓ Microchip ✓ Esterilización ✓ Chequeo veterinario ✓ Documentos. Ayuda a mantener operaciones de rescate.",
+    
+    requisitos: "Para adoptar necesitas: ✓ Ser mayor de 18 ✓ Hogar estable ✓ Cuidado veterinario ✓ Tiempo disponible ✓ Referencias. Aseguramos que cada perro va a un hogar amoroso.",
+    
+    navegacion: "Menú superior PetAdopt: 📍 INICIO - Página principal 📍 ADOPTAR - Nuestros 6 perros 📍 CUIDADOS - Guía completa 📍 SOBRE NOSOTROS - Información",
+    
+    cuidados_seccion: "Sección CUIDADOS: 🍖 ALIMENTACIÓN 🏥 SALUD 🏃 EJERCICIO 🧼 HIGIENE 🏠 AMBIENTE ❤️ AMOR - 6 guías completas",
+    
+    galeria: "Galería ADOPCIÓN: 6 perros con nombre, edad, raza, descripción, botón 'Quiero Adoptar'. ¡Cada uno tiene historia única!",
+    
+    rex: "¡Soy Rex! 🐕 Tu asistente 24/7 de PetAdopt. Estoy aquí para ayudarte con: adopción, cuidados, preguntas sobre la página, nuestros perros, y más. ¡Pregúntame lo que necesites!",
+    
+    bienvenida: "¡Bienvenido a PetAdopt! Soy Rex 🐕. Puedo ayudarte con: 1) Conocer nuestros 6 perros 2) Aprender cuidados 3) Info adopción 4) Cualquier pregunta. ¿En qué puedo ayudarte?",
+    
+    proceso_adopcion: "Proceso PetAdopt: 1) Solicitud online 2) Revisión perfil 3) Entrevista 4) Verificación hogar 5) Aprobación 6) ¡Recoger perro! Toma 2-3 semanas.",
+    
+    seguimiento: "Post-adopción: Documentación legal, historial médico, consejos adaptación, acceso chat (conmigo, Rex), contactos veterinarios, comunidad online. ¡De por vida!",
+    
+    adaptacion: "Adaptar perro nuevo: Primeras semanas: espacio seguro, rutina, refuerzos positivos. Salidas cortas después. Socialización gradual. Entrenamiento paciente. Mucho amor diario. Cada perro es único."
+};
+
+function processMessage(userMessage) {
+    const lowerMessage = userMessage.toLowerCase();
+    
+    const keywords = {
+        adopcion: ['adoptar', 'adopción', 'quiero adoptar', 'cómo adopto', 'proceso adopción', 'pasos'],
+        cuidados: ['cuidado', 'cuidados', 'cómo cuidar', 'qué necesita', 'necesidades'],
+        alimentacion: ['comer', 'comida', 'alimentación', 'qué come', 'dieta', 'alimento', 'nutrición'],
+        salud: ['salud', 'veterinario', 'enfermo', 'enfermedad', 'médico', 'vacuna', 'chequeo', 'esterilización'],
+        ejercicio: ['ejercicio', 'caminar', 'paseo', 'actividad', 'jugar', 'correr', 'actividad física'],
+        higiene: ['baño', 'limpio', 'higiene', 'grooming', 'peluquería', 'aseo', 'cepillo', 'uñas', 'dientes'],
+        comportamiento: ['comportamiento', 'entrenamiento', 'entrenar', 'obediencia', 'trucos', 'disciplina', 'adiestramiento'],
+        emergencia: ['emergencia', 'urgencia', 'ayuda', 'problema', 'accidente', 'envenenamiento', 'crítico'],
+        contacto: ['contacto', 'teléfono', 'email', 'cómo contactar', 'dirección', 'ayuda', 'comunicarse', 'llamar'],
+        pagina: ['quién eres', 'qué es', 'acerca de', 'sobre ustedes', 'about', 'misión', 'objetivo', 'petadopt'],
+        perros: ['qué perros', 'razas', 'qué tenéis', 'disponibles', 'perros', 'max', 'bella', 'charlie', 'lucy', 'rocky', 'daisy', 'adoptar'],
+        precio: ['precio', 'costo', 'cuánto cuesta', 'tarifa', 'pago', 'cuesta', 'vale', 'dinero'],
+        requisitos: ['requisitos', 'qué necesito', 'cómo empiezo', 'condiciones', 'necesario', 'edad'],
+        navegacion: ['cómo navego', 'menú', 'dónde', 'cómo busco', 'home', 'inicio', 'sección', 'página'],
+        cuidados_seccion: ['sección cuidados', 'cuidados página', 'información cuidados', 'guía'],
+        galeria: ['galería', 'fotos', 'imágenes', 'donde estan los perros', 'ver perros'],
+        rex: ['quién eres', 'tu nombre', 'rex', 'asistente', 'quién soy'],
+        bienvenida: ['hola', 'hi', 'ayuda', 'ayúdame', 'necesito ayuda', 'qué puedes hacer', 'cómo funcionas'],
+        proceso_adopcion: ['paso', 'pasos', 'cómo es el proceso', 'detalle', 'fase'],
+        seguimiento: ['después adopción', 'post adopción', 'seguimiento', 'después de adoptar'],
+        adaptacion: ['adaptar perro', 'acostumbrar', 'nuevo hogar', 'adaptación', 'primeros días', 'cómo adaptarse'],
+    };
+    
+    for (const [topic, words] of Object.entries(keywords)) {
+        if (words.some(word => lowerMessage.includes(word))) {
+            return chatbotResponses[topic];
+        }
+    }
+    
+    return "¡Hola! Soy Rex 🐕, tu asistente en PetAdopt. Puedo ayudarte con: adopción, cuidados, alimentación, salud, ejercicio, higiene, comportamiento, emergencias, navegación, preguntas sobre nuestros perros, precios, requisitos, y mucho más. ¿Qué necesitas saber?";
+}
+
+// Cargar perros cuando se carga la página
+document.addEventListener('DOMContentLoaded', function() {
+    loadDogs();
+    initializeFormHandlers();
+});
+
+// Inicializar manejadores de formularios
+function initializeFormHandlers() {
+    // Formulario de Adopción
+    const adoptionForm = document.getElementById('adoptionForm');
+    if (adoptionForm) {
+        adoptionForm.addEventListener('submit', handleAdoptionSubmit);
+    }
+    
+    // Formulario de Donación
+    const donationForm = document.getElementById('donationForm');
+    if (donationForm) {
+        donationForm.addEventListener('submit', handleDonationSubmit);
+        
+        const donationBtns = document.querySelectorAll('.donation-btn');
+        donationBtns.forEach(btn => {
+            btn.addEventListener('click', selectDonationAmount);
+        });
+    }
+    
+    // Formulario de Reporte
+    const reportForm = document.getElementById('reportForm');
+    if (reportForm) {
+        reportForm.addEventListener('submit', handleReportSubmit);
+    }
+}
+
+// Manejo de Formulario de Adopción
+function handleAdoptionSubmit(e) {
+    e.preventDefault();
+    
+    const name = document.getElementById('adopterName').value;
+    const email = document.getElementById('adopterEmail').value;
+    const phone = document.getElementById('adopterPhone').value;
+    const dog = document.getElementById('adoptDog').value;
+    const reason = document.getElementById('adoptReason').value;
+    const experience = document.getElementById('adoptExperience').value;
+    const houseType = document.getElementById('adoptHouseType').value;
+    const yard = document.getElementById('adoptYard').value;
+    
+    // Validaciones
+    if (!name || !email || !phone || !dog || !reason || !experience || !houseType || !yard) {
+        alert('Por favor completa todos los campos requeridos');
+        return;
+    }
+    
+    // Crear objeto con los datos
+    const adoptionData = {
+        name, email, phone, dog, reason, experience, houseType, yard,
+        timestamp: new Date().toLocaleString('es-ES')
+    };
+    
+    // Guardar en localStorage
+    let submissions = JSON.parse(localStorage.getItem('adoptionSubmissions') || '[]');
+    submissions.push(adoptionData);
+    localStorage.setItem('adoptionSubmissions', JSON.stringify(submissions));
+    
+    // Mostrar mensaje de éxito
+    alert(`¡Gracias ${name}! Tu solicitud de adopción para ${dog} ha sido recibida.\nNos pondremos en contacto contigo pronto al correo: ${email}`);
+    
+    // Limpiar formulario
+    document.getElementById('adoptionForm').reset();
+}
+
+// Manejo de Formulario de Donación
+function selectDonationAmount(e) {
+    e.preventDefault();
+    
+    const amount = e.target.getAttribute('data-amount');
+    document.getElementById('customAmount').value = amount;
+    
+    // Actualizar botones activos
+    document.querySelectorAll('.donation-btn').forEach(btn => {
+        btn.classList.remove('active');
+    });
+    e.target.classList.add('active');
+}
+
+function handleDonationSubmit(e) {
+    e.preventDefault();
+    
+    const customAmount = document.getElementById('customAmount').value;
+    const email = document.getElementById('donorEmail').value;
+    const recurring = document.getElementById('recurringDonation').checked;
+    
+    if (!customAmount || parseFloat(customAmount) <= 0) {
+        alert('Por favor selecciona o ingresa una cantidad válida');
+        return;
+    }
+    
+    // Crear objeto con datos de donación
+    const donationData = {
+        amount: parseFloat(customAmount),
+        email: email || 'anónimo',
+        recurring: recurring,
+        timestamp: new Date().toLocaleString('es-ES')
+    };
+    
+    // Guardar en localStorage
+    let donations = JSON.parse(localStorage.getItem('donations') || '[]');
+    donations.push(donationData);
+    localStorage.setItem('donations', JSON.stringify(donations));
+    
+    const recurringText = recurring ? ' (mensual)' : '';
+    alert(`¡Gracias por tu donación de $${customAmount}${recurringText}! Tu aporte ayudará a cuidar a nuestros perritos. 🐾`);
+    
+    // Limpiar formulario
+    document.getElementById('donationForm').reset();
+    document.querySelectorAll('.donation-btn').forEach(btn => {
+        btn.classList.remove('active');
+    });
+}
+
+// Manejo de Formulario de Reporte
+function previewPhoto(event) {
+    const file = event.target.files[0];
+    const preview = document.getElementById('photoPreview');
+    
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            preview.innerHTML = `<img src="${e.target.result}" alt="Preview">`;
+        };
+        reader.readAsDataURL(file);
+    }
+}
+
+function handleReportSubmit(e) {
+    e.preventDefault();
+    
+    const name = document.getElementById('reporterName').value;
+    const email = document.getElementById('reporterEmail').value;
+    const phone = document.getElementById('reporterPhone').value;
+    const location = document.getElementById('reportLocation').value;
+    const breed = document.getElementById('reportBreed').value;
+    const size = document.getElementById('reportSize').value;
+    const urgency = document.getElementById('reportUrgency').value;
+    const description = document.getElementById('reportDescription').value;
+    const photoInput = document.getElementById('reportPhoto');
+    
+    // Validaciones
+    if (!name || !email || !phone || !location || !breed || !size || !urgency || !description) {
+        alert('Por favor completa todos los campos requeridos');
+        return;
+    }
+    
+    // Crear objeto con datos del reporte
+    const reportData = {
+        name, email, phone, location, breed, size, urgency, description,
+        hasPhoto: photoInput.files.length > 0,
+        timestamp: new Date().toLocaleString('es-ES')
+    };
+    
+    // Guardar en localStorage
+    let reports = JSON.parse(localStorage.getItem('reports') || '[]');
+    reports.push(reportData);
+    localStorage.setItem('reports', JSON.stringify(reports));
+    
+    const urgencyText = urgency === 'critical' ? '🚨 CRÍTICA' : urgency === 'high' ? '⚠️ ALTA' : '📋 MEDIA';
+    alert(`¡Reporte recibido exitosamente! 🐕\n\nUbicación: ${location}\nUrgencia: ${urgencyText}\n\nNos pondremos en contacto contigo al: ${phone} para coordinar el rescate.`);
+    
+    // Limpiar formulario
+    document.getElementById('reportForm').reset();
+    document.getElementById('photoPreview').innerHTML = '';
+}
+    </script>
+</body>
+</html>

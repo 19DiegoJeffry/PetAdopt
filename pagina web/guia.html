@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📋 Guía de Inicio - PetAdopt</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            padding: 2rem;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+        header {
+            background: linear-gradient(135deg, #FF6B6B 0%, #4ECDC4 100%);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        .content {
+            padding: 2rem;
+        }
+        .option {
+            margin-bottom: 3rem;
+            border-left: 4px solid #FF6B6B;
+            padding-left: 2rem;
+            position: relative;
+        }
+        .option h2 {
+            color: #FF6B6B;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+        .option.recommended {
+            border-left-color: #4ECDC4;
+            background: rgba(78, 205, 196, 0.1);
+            padding: 2rem;
+            border-radius: 10px;
+            margin-left: -2rem;
+            margin-right: -2rem;
+            padding-left: 2rem;
+        }
+        .option.recommended h2 {
+            color: #4ECDC4;
+        }
+        .badge {
+            display: inline-block;
+            background: #FF6B6B;
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        .recommended .badge {
+            background: #4ECDC4;
+        }
+        .steps {
+            list-style: none;
+            margin: 1rem 0;
+        }
+        .steps li {
+            margin: 0.8rem 0;
+            padding-left: 2rem;
+            position: relative;
+        }
+        .steps li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #4ECDC4;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        .code-block {
+            background: #f4f4f4;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 1rem;
+            margin: 1rem 0;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+            color: #333;
+        }
+        .button {
+            display: inline-block;
+            background: #FF6B6B;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 1rem;
+            transition: all 0.3s ease;
+        }
+        .button:hover {
+            background: #FF5252;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(255, 107, 107, 0.4);
+        }
+        .button-secondary {
+            background: #4ECDC4;
+        }
+        .button-secondary:hover {
+            background: #3ab5b0;
+        }
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        .feature-card {
+            background: #f9f9f9;
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            border-top: 3px solid #FF6B6B;
+        }
+        .feature-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+        .feature-card p {
+            font-size: 0.95rem;
+            color: #666;
+        }
+        .warning {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 1rem;
+            border-radius: 5px;
+            margin: 1rem 0;
+        }
+        .success {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 1rem;
+            border-radius: 5px;
+            margin: 1rem 0;
+        }
+        footer {
+            background: #f0f0f0;
+            padding: 2rem;
+            text-align: center;
+            border-top: 1px solid #ddd;
+            color: #666;
+        }
+        .nav-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+        .nav-buttons a {
+            flex: 1;
+            min-width: 200px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🐾 PetAdopt</h1>
+            <p>Página de Adopción de Perros - Guía de Inicio</p>
+        </header>
+
+        <div class="content">
+            <div class="features">
+                <div class="feature-card">
+                    <h3>✅ Frontend Completo</h3>
+                    <p>Página web moderna y responsiva lista para usar</p>
+                </div>
+                <div class="feature-card">
+                    <h3>💬 Chatbot IA</h3>
+                    <p>Responde preguntas sobre adopción y cuidados</p>
+                </div>
+                <div class="feature-card">
+                    <h3>🐕 Galería de Perros</h3>
+                    <p>6 perros disponibles para adoptar</p>
+                </div>
+            </div>
+
+            <!-- Opción 1 -->
+            <div class="option">
+                <span class="badge">⚡ Más Rápido</span>
+                <h2>Opción 1: Solo Frontend (30 segundos)</h2>
+                <p>Abre la página sin necesidad de servidor backend.</p>
+                
+                <h3 style="margin-top: 1rem; margin-bottom: 0.5rem;">Pasos:</h3>
+                <ol class="steps">
+                    <li>Localiza el archivo <strong>index.html</strong></li>
+                    <li>Haz doble clic para abrir en tu navegador</li>
+                    <li>¡La página está lista! El chatbot funciona sin servidor</li>
+                </ol>
+
+                <div class="success">
+                    ✅ <strong>Ventaja:</strong> No requiere instalación de Node.js ni npm
+                </div>
+
+                <a href="index.html" class="button">Abrir Página Web →</a>
+            </div>
+
+            <!-- Opción 2 -->
+            <div class="option recommended">
+                <span class="badge">⭐ Recomendado</span>
+                <h2>Opción 2: Con Backend Node.js (2-3 minutos)</h2>
+                <p>Ejecuta el servidor backend para mejor experiencia del chatbot con IA.</p>
+                
+                <h3 style="margin-top: 1rem; margin-bottom: 0.5rem;">Requisitos:</h3>
+                <ul class="steps">
+                    <li>Node.js instalado (descarga desde <a href="https://nodejs.org/" target="_blank">nodejs.org</a>)</li>
+                </ul>
+
+                <h3 style="margin-top: 1rem; margin-bottom: 0.5rem;">Pasos:</h3>
+                
+                <h4>1️⃣ Instalar dependencias</h4>
+                <div class="code-block">npm install</div>
+
+                <h4>2️⃣ Iniciar servidor</h4>
+                <div class="code-block">npm start</div>
+                
+                <p style="margin-top: 1rem;">Verás en la terminal:</p>
+                <div class="code-block">🐾 Servidor PetAdopt ejecutándose en http://localhost:5000</div>
+
+                <h4>3️⃣ Abrir página en navegador</h4>
+                <p>Abre <strong>index.html</strong> (el chatbot ahora conecta con el servidor)</p>
+
+                <div class="success">
+                    ✅ <strong>Ventajas:</strong><br>
+                    • Mejor rendimiento del chatbot<br>
+                    • Escalable para futuras mejoras<br>
+                    • Listo para IA avanzada
+                </div>
+
+                <div class="warning">
+                    ⚠️ <strong>Nota:</strong> Necesitas Node.js instalado. Si no lo tienes, descárgalo antes.
+                </div>
+
+                <a href="#" class="button button-secondary" onclick="alert('Para iniciar con backend, abre una terminal en esta carpeta y ejecuta: npm install && npm start')">Instrucciones Backend →</a>
+            </div>
+
+            <!-- Solución de Problemas -->
+            <div class="option">
+                <h2>❓ Solución de Problemas</h2>
+                
+                <h3 style="margin-top: 1rem;">¿El chatbot no responde?</h3>
+                <ul class="steps">
+                    <li>El backend está en pausa (verifica que <code>npm start</code> esté ejecutándose)</li>
+                    <li>Abre las herramientas de desarrollador (F12) para ver errores</li>
+                    <li>El chatbot tiene modo fallback y funciona sin servidor</li>
+                </ul>
+
+                <h3 style="margin-top: 1rem;">¿npm no reconocido?</h3>
+                <ul class="steps">
+                    <li>Node.js no está instalado correctamente</li>
+                    <li>Descarga desde: <a href="https://nodejs.org/" target="_blank">https://nodejs.org/</a></li>
+                    <li>Reinicia tu terminal después de instalar</li>
+                </ul>
+
+                <h3 style="margin-top: 1rem;">¿Puerto 5000 en uso?</h3>
+                <ul class="steps">
+                    <li>Cambia el puerto en <strong>server.js</strong> en la línea: <code>const PORT = 5001;</code></li>
+                </ul>
+            </div>
+
+            <!-- Características -->
+            <div class="option">
+                <h2>🎯 Características Principales</h2>
+                
+                <h3 style="margin-top: 1rem;">📱 Frontend</h3>
+                <ul class="steps">
+                    <li>Diseño responsivo (mobile, tablet, desktop)</li>
+                    <li>Galería de 6 perros disponibles</li>
+                    <li>Sección completa de cuidados de mascotas</li>
+                    <li>Información sobre proceso de adopción</li>
+                    <li>Animaciones y transiciones modernas</li>
+                </ul>
+
+                <h3 style="margin-top: 1rem;">💬 Chatbot</h3>
+                <p>Responde preguntas sobre:</p>
+                <ul class="steps">
+                    <li>Proceso de adopción</li>
+                    <li>Alimentación de perros</li>
+                    <li>Salud y veterinario</li>
+                    <li>Ejercicio y actividad física</li>
+                    <li>Higiene y grooming</li>
+                    <li>Comportamiento y entrenamiento</li>
+                    <li>Emergencias veterinarias</li>
+                    <li>Información de contacto</li>
+                </ul>
+            </div>
+
+            <!-- Personalización -->
+            <div class="option">
+                <h2>🎨 Personalización Rápida</h2>
+                
+                <p>Todos los cambios se hacen directamente en <strong>index.html</strong>:</p>
+
+                <h3 style="margin-top: 1rem;">Cambiar nombre del sitio</h3>
+                <p>Busca <code>&lt;title&gt;🐕 PetAdopt&lt;/title&gt;</code> y cambia el nombre</p>
+
+                <h3 style="margin-top: 1rem;">Cambiar colores</h3>
+                <p>En el <code>&lt;style&gt;</code>, edita:</p>
+                <div class="code-block">
+--primary-color: #FF6B6B;     /* Color principal */<br>
+--secondary-color: #4ECDC4;   /* Color secundario */
+                </div>
+
+                <h3 style="margin-top: 1rem;">Agregar/Cambiar perros</h3>
+                <p>En el <code>&lt;script&gt;</code>, busca <code>const dogsData</code> y edita la lista</p>
+
+                <h3 style="margin-top: 1rem;">Cambiar información de contacto</h3>
+                <p>Busca la sección de footer y reemplaza los datos</p>
+            </div>
+
+            <!-- Próximos pasos -->
+            <div class="option" style="border-left-color: #667eea;">
+                <h2>📚 Próximos Pasos</h2>
+                
+                <ol class="steps">
+                    <li>✅ Prueba la página web completa</li>
+                    <li>✅ Interactúa con el chatbot</li>
+                    <li>✅ Personaliza datos (nombre, contacto, perros)</li>
+                    <li>✅ Prueba con backend Node.js</li>
+                    <li>✅ Integra con base de datos real (opcional)</li>
+                    <li>✅ Comparte con amigos</li>
+                </ol>
+            </div>
+
+        </div>
+
+        <footer>
+            <p>🐾 Hecho con ❤️ para los amantes de los perros</p>
+            <p style="margin-top: 0.5rem; font-size: 0.9rem;">PetAdopt © 2024 - Todos los derechos reservados</p>
+        </footer>
+    </div>
+
+    <div style="text-align: center; margin-top: 2rem;">
+        <a href="index.html" style="color: white; text-decoration: none; font-size: 1.1rem;">
+            ← Volver a la página principal
+        </a>
+    </div>
+</body>
+</html>
