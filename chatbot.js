@@ -104,9 +104,9 @@ const chatbotResponses = {
     
     galeria: "Galería ADOPCIÓN: 6 perros con nombre, edad, raza, descripción, botón 'Quiero Adoptar'. ¡Cada uno tiene historia única!",
     
-    rex: "¡Soy Rex! 🐕 Tu asistente 24/7 de PetAdopt. Estoy aquí para ayudarte con: adopción, cuidados, preguntas sobre la página, nuestros perros, y más. ¡Pregúntame lo que necesites!",
+    rex: "¡Soy Rex! Tu asistente 24/7 de PetAdopt. Estoy aquí para ayudarte con: adopción, cuidados, preguntas sobre la página, nuestros perros, y más. ¡Pregúntame lo que necesites!",
     
-    bienvenida: "¡Bienvenido a PetAdopt! Soy Rex 🐕. Puedo ayudarte con: 1) Conocer nuestros 6 perros 2) Aprender cuidados 3) Info adopción 4) Cualquier pregunta. ¿En qué puedo ayudarte?",
+    bienvenida: "¡Bienvenido a PetAdopt! Soy Rex. Puedo ayudarte con: 1) Conocer nuestros 6 perros 2) Aprender cuidados 3) Info adopción 4) Cualquier pregunta. ¿En qué puedo ayudarte?",
     
     proceso_adopcion: "Proceso PetAdopt: 1) Solicitud online 2) Revisión perfil 3) Entrevista 4) Verificación hogar 5) Aprobación 6) ¡Recoger perro! Toma 2-3 semanas.",
     
@@ -149,5 +149,5 @@ function processMessage(userMessage) {
         }
     }
     
-    return "¡Hola! Soy Rex 🐕, tu asistente en PetAdopt. Puedo ayudarte con: adopción, cuidados, alimentación, salud, ejercicio, higiene, comportamiento, emergencias, navegación, preguntas sobre nuestros perros, precios, requisitos, y mucho más. ¿Qué necesitas saber?";
+    return "¡Hola! Soy Rex, tu asistente en PetAdopt. Puedo ayudarte con: adopción, cuidados, alimentación, salud, ejercicio, higiene, comportamiento, emergencias, navegación, preguntas sobre nuestros perros, precios, requisitos, y mucho más. ¿Qué necesitas saber?";
 }
