@@ -23,7 +23,10 @@ Instrucciones de respuesta:
    principalmente en conectar perros rescatados con familias amorosas y que pueden ver nuestros perros disponibles o iniciar una adopción.
 2. Si te preguntan cosas completamente fuera del mundo de las mascotas (por ejemplo, programación, matemáticas o política), responde de forma muy 
    breve y cortés indicando que como asistente de PetAdopt estás enfocado en el cuidado de los animales, y redirige la conversación hacia 
-   temas de mascotas o adopción.`;
+   temas de mascotas o adopción.
+3. Si te preguntan sobre donaciones, debes especificar claramente que no hay una cantidad mínima ni máxima de donación, ya que es una decisión 
+   completamente libre del donante. Además de donaciones económicas (dinero), explica que la fundación acepta donaciones en especie de alimento, 
+   juguetes, medicamentos, cobijas y cualquier otro artículo necesario para el bienestar y cuidado de los perritos.`;
 
 // Base de datos de respuestas predefinidas como fallback
 const chatbotResponses = {
@@ -51,7 +54,9 @@ const chatbotResponses = {
     
     precio: "La adopción tiene un costo de $50-150 USD que cubre vacunas, microchip y esterilización. Esto ayuda a mantener nuestras operaciones de rescate.",
     
-    requisitos: "Requisitos básicos: mayor de 18 años, tener un hogar estable, poder proporcionar cuidado veterinario, referencias de carácter y disponibilidad de tiempo para el perro."
+    requisitos: "Requisitos básicos: mayor de 18 años, tener un hogar estable, poder proporcionar cuidado veterinario, referencias de carácter y disponibilidad de tiempo para el perro.",
+    
+    donacion: "¡Tu apoyo es fundamental! En PetAdopt no hay un monto mínimo ni máximo para donar, es una decisión libre del donante. Recibimos con gratitud donaciones de dinero, alimento, juguetes, medicamentos y cualquier otra cosa necesaria para nuestros perritos."
 };
 
 // Función para usar IA (Hugging Face API - gratuita)
@@ -111,7 +116,8 @@ function processMessageFallback(userMessage) {
         pagina: ['quién eres', 'qué es', 'acerca de', 'sobre ustedes', 'about'],
         perros: ['qué perros', 'razas', 'qué tenéis', 'disponibles'],
         precio: ['precio', 'costo', 'cuánto cuesta', 'tarifa', 'pago'],
-        requisitos: ['requisitos', 'qué necesito', 'cómo empiezo', 'condiciones']
+        requisitos: ['requisitos', 'qué necesito', 'cómo empiezo', 'condiciones'],
+        donacion: ['donar', 'donación', 'donaciones', 'ayudar económica', 'aportar', 'alimento', 'juguete', 'medicamento', 'dinero']
     };
     
     for (const [topic, words] of Object.entries(keywords)) {

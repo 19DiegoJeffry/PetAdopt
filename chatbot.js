@@ -114,7 +114,8 @@ const chatbotResponses = {
     
     adaptacion: "Adaptar perro nuevo: Primeras semanas: espacio seguro, rutina, refuerzos positivos. Salidas cortas después. Socialización gradual. Entrenamiento paciente. Mucho amor diario. Cada perro es único.",
     mascotas_general: "En PetAdopt nos enfocamos principalmente en la adopción y el cuidado de perros rescatados. Sin embargo, creemos que todas las mascotas (gatos, conejos, aves, etc.) merecen un hogar seguro y lleno de amor. Te invitamos a conocer a nuestros perros disponibles o consultar sobre el proceso de adopción.",
-    fuera_tema: "Como asistente de PetAdopt, estoy enfocado en el bienestar de los animales, la adopción de mascotas y sus cuidados. ¿Te gustaría saber sobre los perros disponibles en nuestro refugio o los requisitos de adopción?"
+    fuera_tema: "Como asistente de PetAdopt, estoy enfocado en el bienestar de los animales, la adopción de mascotas y sus cuidados. ¿Te gustaría saber sobre los perros disponibles en nuestro refugio o los requisitos de adopción?",
+    donacion: "¡Tu apoyo es fundamental! En PetAdopt no hay un monto mínimo ni máximo para donar, es una decisión libre del donante. Recibimos con gratitud donaciones de dinero, alimento, juguetes, medicamentos, cobijas y cualquier otra cosa necesaria para nuestros perritos."
 };
 
 // Función para procesar mensajes y buscar respuestas locales (fallback)
@@ -137,6 +138,7 @@ function processMessage(userMessage) {
         perros: ['qué perros', 'razas', 'qué tenéis', 'disponibles', 'perros', 'max', 'bella', 'charlie', 'lucy', 'rocky', 'daisy', 'adoptar'],
         precio: ['precio', 'costo', 'cuánto cuesta', 'tarifa', 'pago', 'cuesta', 'vale', 'dinero'],
         requisitos: ['requisitos', 'qué necesito', 'cómo empiezo', 'condiciones', 'necesario', 'edad'],
+        donacion: ['donar', 'donación', 'donaciones', 'ayudar económica', 'aportar', 'alimento', 'juguete', 'medicamento', 'dinero'],
         navegacion: ['cómo navego', 'menú', 'dónde', 'cómo busco', 'home', 'inicio', 'sección', 'página'],
         cuidados_seccion: ['sección cuidados', 'cuidados página', 'información cuidados', 'guía'],
         galeria: ['galería', 'fotos', 'imágenes', 'donde estan los perros', 'ver perros'],
