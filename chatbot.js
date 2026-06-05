@@ -112,7 +112,9 @@ const chatbotResponses = {
     
     seguimiento: "Post-adopción: Documentación legal, historial médico, consejos adaptación, acceso chat (conmigo, Rex), contactos veterinarios, comunidad online. ¡De por vida!",
     
-    adaptacion: "Adaptar perro nuevo: Primeras semanas: espacio seguro, rutina, refuerzos positivos. Salidas cortas después. Socialización gradual. Entrenamiento paciente. Mucho amor diario. Cada perro es único."
+    adaptacion: "Adaptar perro nuevo: Primeras semanas: espacio seguro, rutina, refuerzos positivos. Salidas cortas después. Socialización gradual. Entrenamiento paciente. Mucho amor diario. Cada perro es único.",
+    mascotas_general: "En PetAdopt nos enfocamos principalmente en la adopción y el cuidado de perros rescatados. Sin embargo, creemos que todas las mascotas (gatos, conejos, aves, etc.) merecen un hogar seguro y lleno de amor. Te invitamos a conocer a nuestros perros disponibles o consultar sobre el proceso de adopción.",
+    fuera_tema: "Como asistente de PetAdopt, estoy enfocado en el bienestar de los animales, la adopción de mascotas y sus cuidados. ¿Te gustaría saber sobre los perros disponibles en nuestro refugio o los requisitos de adopción?"
 };
 
 // Función para procesar mensajes y buscar respuestas locales (fallback)
@@ -120,6 +122,8 @@ function processMessage(userMessage) {
     const lowerMessage = userMessage.toLowerCase();
     
     const keywords = {
+        mascotas_general: ['gato', 'gatos', 'conejo', 'conejos', 'pájaro', 'ave', 'hámster', 'mascota', 'mascotas', 'animales', 'animal'],
+        fuera_tema: ['clima', 'fútbol', 'política', 'historia', 'ciencia', 'matemática', 'música', 'televisión', 'película', 'juego', 'computadora', 'programación'],
         adopcion: ['adoptar', 'adopción', 'quiero adoptar', 'cómo adopto', 'proceso adopción', 'pasos'],
         cuidados: ['cuidado', 'cuidados', 'cómo cuidar', 'qué necesita', 'necesidades'],
         alimentacion: ['comer', 'comida', 'alimentación', 'qué come', 'dieta', 'alimento', 'nutrición'],
